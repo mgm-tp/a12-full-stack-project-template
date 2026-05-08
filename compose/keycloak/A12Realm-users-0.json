@@ -1,0 +1,71 @@
+{
+  "realm" : "A12Realm",
+  "users": [
+    {
+      "createdTimestamp": 1699601551607,
+      "username": "admin",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "admin",
+      "lastName": "",
+      "credentials": [
+        {
+          "type": "password",
+          "userLabel": "My password",
+          "secretData": "{\"value\":\"30AWZpjDF4RVkBL3Wpr3HT5Uv3aSKh44HA2NbQVGNMQ=\",\"salt\":\"sBjwcDatDJFDax0aYC1mZw==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles" : [ "admin" ],
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "createdTimestamp": 1699601620241,
+      "username": "user1",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "user1",
+      "lastName": "",
+      "credentials": [
+        {
+          "type": "password",
+          "userLabel": "My password",
+          "secretData": "{\"value\":\"c2qLTv2gU8Bmt2ZouVbZEYNb4olX+CQMJRdWuBSA6qg=\",\"salt\":\"t+5ICY2l8y+Hlbkmjg1gnA==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles" : [ "user" ],
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "createdTimestamp": 1699601651731,
+      "username": "user2",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "user2",
+      "lastName": "",
+      "credentials": [
+        {
+          "type": "password",
+          "userLabel": "My password",
+          "secretData": "{\"value\":\"gPkqlV3EYMcc62O7sFXsA4F2oF7J11yAjZDO76b/WaU=\",\"salt\":\"9B1S+QFyzyL1gxQyOREVEw==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles" : [ "user" ],
+      "notBefore": 0,
+      "groups": []
+    }
+  ]
+}
