@@ -52,7 +52,7 @@ export const enginesViewMap = {
         return <CRUDViews.FormEngineView {...props} />;
     },
     OverviewEngine(props) {
-        return <CRUDViews.OverviewEngineView {...props} timeMode="24h" />;
+        return <CRUDViews.OverviewEngineView {...props} />;
     },
     ContentEngine: withFormElementContexts({
         ViewComponent: DefaultElementLibraryFactories.ViewComponent

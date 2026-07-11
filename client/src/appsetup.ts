@@ -111,10 +111,10 @@ export function setup() {
     const a12Features = combineFeatures(
         withModel(APPLICATION_MODEL_PLACEHOLDER),
         withDataServicesConfiguration,
-        withTreeEngine,
         withOverviewEngine,
         withRelationshipFormEngine,
         withCRUD,
+        withTreeEngine,
         withContentEngine(DefaultElementLibrary.get().id),
         withPlatformModelLoader
     );

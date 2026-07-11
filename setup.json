@@ -23,6 +23,18 @@
     "current": "your-project-name",
     "alternative": "your-project-name"
   },
+  "projectImportsArtifact": {
+    "current": "project-template-imports",
+    "alternative": "project-template-imports"
+  },
+  "sonarProjectKey": {
+    "current": "Project-Template",
+    "alternative": "Project-Template"
+  },
+  "projectDisplayName": {
+    "current": "Project Template",
+    "alternative": "Project Template"
+  },
   "appModelName": {
     "current": "YourAppModel_AM",
     "alternative": "YourAppModel_AM"
@@ -70,5 +82,9 @@
   "keycloakDatabasePassword": {
     "current": "your-keycloak-db-password",
     "alternative": "your-keycloak-db-password"
+  },
+  "nginxServerBaseUrlVarName": {
+    "current": "NGINX_PROJECT_TEMPLATE_SERVER_BASE_URL",
+    "alternative": "NGINX_PROJECT_TEMPLATE_SERVER_BASE_URL"
   }
 }

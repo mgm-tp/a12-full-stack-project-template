@@ -39,10 +39,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 import com.mgmtp.a12.dataservices.common.events.CommonDataServicesEventListener;
 import com.mgmtp.a12.dataservices.document.DataServicesDocument;
 import com.mgmtp.a12.dataservices.document.DocumentReference;
@@ -52,6 +51,7 @@ import com.mgmtp.a12.dataservices.document.persistence.IDocumentRepository;
 import com.mgmtp.a12.dataservices.migration.MigrationStep;
 import com.mgmtp.a12.dataservices.migration.MigrationTask;
 import com.mgmtp.a12.uaa.authentication.backend.Authenticated;
+import tools.jackson.core.JacksonException;
 
 @MigrationStep(version = "38.3.4", name = "Data migration of Person Document")
 @Component
@@ -72,7 +72,7 @@ public class PersonMigration {
         this.config = config;
     }
 
-    @Transactional
+    @Transactional("dsTransactionManager")
     @MigrationTask(name = "Remove the PlaceOfBirth field of document")
     @Authenticated(username = "superUser")
     public void migratePlaceOfBirthField() {
@@ -91,7 +91,7 @@ public class PersonMigration {
     @CommonDataServicesEventListener(condition = "@migrationConfiguration.isEnabled() &&"
             + "#afterRepositoryLoadEvent.documentReference.documentModelName.equalsIgnoreCase('Person_DM')")
     public void listenOnDocumentLoadFromRepository(DocumentAfterRepositoryLoadEvent afterRepositoryLoadEvent)
-            throws IllegalArgumentException, JsonProcessingException {
+            throws IllegalArgumentException, JacksonException {
         String documentContent = afterRepositoryLoadEvent.getDocumentContent();
 
         documentContent = migrateDocument(documentContent);
@@ -100,7 +100,7 @@ public class PersonMigration {
     }
 
     private String migrateDocument(String documentContent)
-            throws IllegalArgumentException, JsonProcessingException {
+            throws IllegalArgumentException, JacksonException {
         JsonNode rootJsonNode = mapper.readTree(documentContent);
         ObjectNode rootObjNode = (ObjectNode) rootJsonNode;
         JsonNode parentNode = rootJsonNode.at(REMOVED_FIELD_PATH.substring(0, REMOVED_FIELD_PATH.lastIndexOf("/")));

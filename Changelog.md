@@ -1,4 +1,58 @@
 # Changelog
+
+## [202606.0.0] 
+### Changed
+- Updated to A12 2026.06
+- Updated to Spring Boot 4.0.6
+- Added support for JDK 25 and now require Gradle 9
+- Updated to Node 24 and npm 11
+- Updated to TypeScript 6
+- Updated the client to support ES2025
+- Updated to Redux 5
+- Replaced `typescript-fsa` with `@com.mgmtp.a12.client/typescript-fsa-redux-5-compat`
+- Replaced the `SagaIterator` type with `SagaGenerator` from `typed-redux-saga`
+- Applied the new A12 Base theme
+- Integrated the Workspace Conversion Framework (WCF) to convert workspace models into runtime models during the build; typed accessors are now generated from the converted runtime models
+- Moved SME workspace support to development-only
+- Removed the `dataservices-cdd_sync` profile
+- Dropped deprecated webpack feature usages
+
+## [202506.5.0] - 2026-05-04
+### Changed
+- Updated to A12 2025.06-ext5
+- Added Claude Code setup
+- Aligned the Spring Boot Actuator paths and exposed them through the nginx configuration
+- Display a loading image while the server is not yet available
+- Removed rewrite usage for public resources
+- Updated the README and removed deployment pipeline references
+
+### Fixed
+- Fixed notifications not being localized
+- Fixed duplicate requests during the authentication setup
+
+## [202506.4.0] - 2026-03-23
+### Changed
+- Updated to A12 2025.06-ext4
+- Updated to Spring Boot 3.5.9
+- Updated to Keycloak 26.5.3
+- Updated the nginx client base image to 1.29.3
+- Migrated the frontend build to native ESM modules
+- Restructured the frontend into composable A12 client applications
+- Added support for and demonstration of A12 top-level exports
+- Refactored the client and server packages
+- Added dynamic Hot Module Replacement (HMR) for the frontend dev server
+- Added `typescript-fsa` for typed Redux actions
+- Removed `dateTimeLocale` from the client state
+- Added documentation for connecting to an external Postgres database
+- Added localization documentation
+
+### Fixed
+- Fixed customization of the Tree Engine view not being applied
+- Cleaned up the dependency list and removed the unnecessary `install` dependency
+- Removed deprecated base-bundle references
+- Disabled the Gradle process indicator that stuck at ~80% when the server has been started via CLI
+- Included CDM in the generated typings
+
 ## [202506.2.0] - 2025-10-28
 ### Changed
 - Updated to Spring Boot 3.5.5

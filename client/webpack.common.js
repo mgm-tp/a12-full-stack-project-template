@@ -49,7 +49,7 @@ export default {
     entry: {
         main: [
             // Includes widgets styles in the build
-            "@com.mgmtp.a12.widgets/widgets-core/lib/theme/basic.css",
+            "@com.mgmtp.a12.widgets/widgets-core/styles/basic.css",
             // Guarantees that config is evaluated first
             Path.join(__dirname, "src/config/index.ts"),
             Path.join(__dirname, "src/index.tsx")

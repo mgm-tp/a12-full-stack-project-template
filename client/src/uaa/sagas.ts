@@ -30,15 +30,14 @@
  * LEGALLY INVALID. SEE THE RESPECTIVE LICENSE TEXT FOR DETAILS.
  */
 
-import { type SagaIterator } from "redux-saga";
-import { put, select, takeLatest } from "typed-redux-saga";
+import { put, select, takeLatest, type SagaGenerator } from "typed-redux-saga";
 
 import { isUaaOidcUser, UaaActions, UaaSelectors } from "@com.mgmtp.a12.uaa/uaa-authentication-client";
 
-export function* setRolesForUserAfterTokenRefresh(): SagaIterator {
+export function* setRolesForUserAfterTokenRefresh(): SagaGenerator<void> {
     yield* takeLatest(UaaActions.oidc_user_expiring, handle);
 
-    function* handle(): SagaIterator {
+    function* handle(): SagaGenerator<void> {
         const user = yield* select(UaaSelectors.user);
         if (isUaaOidcUser(user)) {
             yield* put(UaaActions.modifyingOidcUser(user));

@@ -30,8 +30,8 @@
  * LEGALLY INVALID. SEE THE RESPECTIVE LICENSE TEXT FOR DETAILS.
  */
 
-import { LogLevel, Settings, ConsoleLoggingStrategy } from "@com.mgmtp.a12.utils/utils-logging";
+import { Settings, ConsoleLoggingStrategy } from "@com.mgmtp.a12.utils/utils-logging";
 
 import { isProduction } from "./environment";
 
-Settings.LogStrategy = new ConsoleLoggingStrategy(console, isProduction ? LogLevel.ERROR : LogLevel.LOG);
+Settings.LogStrategy = new ConsoleLoggingStrategy(console, isProduction ? "error" : "log");

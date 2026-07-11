@@ -72,7 +72,7 @@ const ThemedPageWrapper = ({ children }: PropsWithChildren) => {
     const theme = useThemeContext((context) => context.theme);
     return (
         <StyleSheetManager shouldForwardProp={shouldForwardProp}>
-            <ThemeProvider theme={THEMES[theme] ?? THEMES.Flat}>
+            <ThemeProvider theme={THEMES[theme] ?? THEMES.Base}>
                 <GlobalStyles />
                 <BasePage>{children}</BasePage>
             </ThemeProvider>
@@ -81,7 +81,7 @@ const ThemedPageWrapper = ({ children }: PropsWithChildren) => {
 };
 
 /**
- * Page with global styles and flat theme applied.
+ * Page with global styles and base theme applied.
  *
  * Other available themes can be found in the Widgets documentation.
  */

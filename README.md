@@ -27,14 +27,14 @@ Proper environment setup is crucial for the successful build and run of this pro
 To wrap up, the following [tools](./tool-versions.json) are required to build this project. Versions are maintained in `./tool-versions.json` file and follow [npm semver] versioning patterns.
 
 <!--- VERSION_TABLE_START (Edit versions in tool-versions.json, not here. Do not delete this tag.) --->
-| Tool                 | Version      | Note |
-|----------------------|--------------|------|
-| [JDK]                | '21'         |      |
-| [Gradle]<sup>1</sup> | '>=8.5.x <9' |      |
-| [Node]               | '22.x.x'     |      |
-| [npm]<sup>1</sup>    | '>=10.7.x'   |      |
-| [Docker]<sup>1</sup> | '>=20.x'     |      |
-| [Docker Compose]     | '>=2.20.3'   |      |
+| Tool                 | Version     | Note |
+|----------------------|-------------|------|
+| [JDK]                | '>=21 <=25' |      |
+| [Gradle]<sup>1</sup> | '>=9.0.x'   |      |
+| [Node]               | '24.x.x'    |      |
+| [npm]<sup>1</sup>    | '>=11.x.x'  |      |
+| [Docker]<sup>1</sup> | '>=20.x'    |      |
+| [Docker Compose]     | '>=2.20.3'  |      |
 <!--- VERSION_TABLE_END (Edit versions in tool-versions.json, not here. Do not delete this tag.) --->
 
 <sup>1</sup>) These tools have to be configured to use proper Artifactory. Please, follow [Artifactory access] documentation to set it up.
@@ -58,7 +58,7 @@ Assuming you went through the documentation, your environment is set up, project
         `gradle keycloakComposeUp`
         > **WARNING**: Project Template's Keycloak setup is for development purposes only. It is necessary to significantly enhance the security of a Keycloak instance for production environments.
     2. Run the server application with the default development Spring profile and keep it running:  
-        `gradle :server:app:bootrun --args='--spring.profiles.active=dev-env'`
+        `gradle :server:app:bootRun --args='--spring.profiles.active=dev-env'`
     3. Run client:
         1. In another terminal window, move to client directory with `cd client`.
         2. Then start the webpack with `npm start` and keep it running.
@@ -66,9 +66,9 @@ Assuming you went through the documentation, your environment is set up, project
 2. Project Template init application (for initialization and migration purposes)
     > **WARNING**: Before running the init application, make sure to stop the server application first. The init application will lock the Postgres database during initialization, and the database could become inconsistent if data is being initialized while the server is still running.
     - Run the init application with the default development Spring profile:  
-        `gradle :server:init:bootrun --args='--spring.profiles.active=dev-env'`
+        `gradle :server:init:bootRun --args='--spring.profiles.active=dev-env'`
     - Run the init application with the 'init-data' Spring profile additionally to initialize documents based on the `import/data/request` folder:
-        `gradle :server:init:bootrun --args='--spring.profiles.active=dev-env,init-data'`  
+        `gradle :server:init:bootRun --args='--spring.profiles.active=dev-env,init-data'`  
 
 #### How to Access It
 
@@ -153,7 +153,7 @@ You can find the details on all topics in the [Geta12] Project Template document
 [Variants]: https://docs.geta12.com/docs/#content:asciidoc,product:PROJECT_TEMPLATE,artifact:project-template-documentation,scene:Qc5TNM,anchor:_variants
 
 <!--- other links --->
-[JDK]: https://adoptopenjdk.net/
+[JDK]: https://adoptium.net/
 [Gradle]: https://docs.gradle.org/
 [Docker]: https://hub.docker.com/
 [Node]: https://nodejs.org/en/docs/

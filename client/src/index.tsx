@@ -37,7 +37,7 @@ import { setup } from "./appsetup";
 import { StyledPage } from "./app/page";
 import { ServerUnavailableNotification } from "./components/ServerUnavailableNotification";
 
-const HEALTH_PATH = "/api/actuator/health/initializationFinished";
+const HEALTH_PATH = "/api/actuator/health/dataservicesInitializationFinished";
 const SERVER_STATUS_UP = "UP";
 
 const INITIAL_POLL_MS = 500;

@@ -30,8 +30,7 @@
  * LEGALLY INVALID. SEE THE RESPECTIVE LICENSE TEXT FOR DETAILS.
  */
 
-import { type SagaIterator } from "redux-saga";
-import { call, put, select, takeLatest } from "typed-redux-saga";
+import { call, put, select, takeLatest, type SagaGenerator } from "typed-redux-saga";
 
 import { ModelGraph } from "@com.mgmtp.a12.dataservices/dataservices-access";
 import { ModelActions, ModelSelectors } from "@com.mgmtp.a12.client/client-core";
@@ -44,7 +43,7 @@ import { UaaActions } from "@com.mgmtp.a12.uaa/uaa-authentication-client";
  *
  * @returns An iterator for handling saga effects.
  */
-export function* LoadModelGraphSaga(): SagaIterator {
+export function* LoadModelGraphSaga(): SagaGenerator<void> {
     yield* takeLatest(UaaActions.modifiedOidcUser, LoadModelGraphWorker);
 }
 
@@ -54,7 +53,7 @@ export function* LoadModelGraphSaga(): SagaIterator {
  *
  * @returns An iterator for handling saga effects.
  */
-function* LoadModelGraphWorker(): SagaIterator {
+function* LoadModelGraphWorker(): SagaGenerator<void> {
     const serverConnector = ConnectorLocator.getInstance().getServerConnector();
     if (!(serverConnector instanceof RestServerConnector)) {
         throw new TypeError("Expected RestServerConnector");

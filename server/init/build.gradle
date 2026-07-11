@@ -41,7 +41,7 @@ ext {
     imageLabels = ["name"       : "${calculateShortTag(rootProject.serverInitName)}".toString(),
                    "vendor"     : "mgm technology partners GmbH",
                    "version"    : project.version,
-                   "release"    : rootProject.a12ReleaseVersion,
+                   "release"    : rootProject.a12ReleaseLine,
                    "summary"    : "A12 Data Services Init application for initialization and migration purposes in production environments",
                    "description": "A12 Data Services Init application to deal with models and documents initialization and migration purposes in production environments"]
 }
@@ -59,6 +59,10 @@ dependencies {
     implementation(platform(a12Libs.kernel.bom))
     implementation(platform(a12Libs.uaa.bom))
     implementation(platform(a12Libs.dataservices.bom))
+}
+
+processResources {
+    dependsOn ':convertModels'
 }
 
 springBoot {

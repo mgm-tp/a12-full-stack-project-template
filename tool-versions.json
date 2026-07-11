@@ -3,25 +3,25 @@
     "jdk": {
       "name": "JDK",
       "superscript": "",
-      "version": "21",
+      "version": ">=21 <=25",
       "note": ""
     },
     "gradle": {
       "name": "Gradle",
       "superscript": "1",
-      "version": ">=8.5.x <9",
+      "version": ">=9.0.x",
       "note": ""
     },
     "node": {
       "name": "Node",
       "superscript": "",
-      "version": "22.x.x",
+      "version": "24.x.x",
       "note": ""
     },
     "npm": {
       "name": "npm",
       "superscript": "1",
-      "version": ">=10.7.x",
+      "version": ">=11.x.x",
       "note": ""
     },
     "docker": {

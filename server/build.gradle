@@ -32,11 +32,14 @@
 
 import com.bmuschko.gradle.docker.tasks.image.*
 import com.mgmtp.a12.JavaOptsConstants
-import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 subprojects {
     dependencyLocking {
         lockAllConfigurations()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.release = 21
     }
 
     ext.bootRunVar = {
@@ -65,10 +68,10 @@ subprojects {
         def configDir = "${project.rootDir}/quality/checkstyle"
 
         checkstyle {
-            toolVersion "${checkstyleVersion}"
-            configFile file("$configDir/checkstyle.xml")
+            toolVersion = "${checkstyleVersion}"
+            configFile = file("$configDir/checkstyle.xml")
             configProperties = ['importControlFile': "${configDir}/import-control.xml"]
-            ignoreFailures false
+            ignoreFailures = false
         }
 
         tasks.withType(Checkstyle).configureEach {
@@ -93,19 +96,19 @@ subprojects {
         def baseImage = "${dockerRegistryForRead}/${dockerSeverBaseImage}"
 
         // NOTE: Apple Silicon users may experience bad performance
-        def currentArchitecture = DefaultNativePlatform.currentArchitecture
-        if (currentArchitecture.isArm() || (currentArchitecture.getName().toLowerCase() in ['aarch64', 'arm64'])) {
+        def osArch = System.getProperty("os.arch").toLowerCase()
+        if (osArch in ['aarch64', 'arm64']) {
             baseImage = "--platform=linux/amd64 $baseImage"
         }
 
         from "$baseImage as builder"
         workingDir "extracted"
         arg "JAR_FILE=libs/${project.name}-${project.version}.jar"
-        environmentVariable "JAVA_TOOL_OPTIONS", JavaOptsConstants.HAZELCAST_JVM_ARGUMENTS.join(' ')
         copyFile "\${JAR_FILE}", "application.jar"
         runCommand "java -Djarmode=layertools -jar application.jar extract"
 
         from baseImage
+        environmentVariable "JAVA_TOOL_OPTIONS", JavaOptsConstants.HAZELCAST_JVM_ARGUMENTS.join(' ')
         label(imageLabels)
         runCommand "set -eux; " +
             "groupadd -r -g 1001 a12; " +

@@ -128,8 +128,8 @@ class Utils {
      * @param projectDir The project directory path
      */
     static void replacePlaceholders(File setupFile, ConfigurableFileTree fileTree, String projectDir) {
-        def includedFiles = ['**/*.json', '**/*.gradle', '**/*.properties', '**/*.yml', '**/*.html', '**/*.ts', '**/*.java', '.run/*.xml', 'quality/**', '**/.env']
-        def excludedDirs = ['**/logs/**', '**/resource/**', '**/.gradle/**', '**/buildSrc/**', '**/target/**', '**/build/**', '**/node_modules/**', 'build.gradle', "**/internal/**"]
+        def includedFiles = ['**/*.json', '**/*.gradle', '**/*.properties', '**/*.yml', '**/*.html', '**/*.ts', '**/*.java', '.run/*.xml', 'quality/**', '**/.env', '**/*.template']
+        def excludedDirs = ['**/logs/**', '**/resource/**', '**/.gradle/**', '**/buildSrc/**', '**/target/**', '**/build/**', '**/node_modules/**', "**/internal/**"]
         // Backslashes in a text have to be escaped for JsonSlurper parsing
         def escapedText = setupFile.text.replace("\\", "\\\\")
         def setupJsonMap = new JsonSlurper().parseText(escapedText) as Map<String, String>

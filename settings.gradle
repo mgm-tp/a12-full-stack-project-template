@@ -41,16 +41,16 @@ include 'import'
 include 'e2e'
 
 dependencyResolutionManagement {
-    def springBootVersion = '3.5.9'
+    def springBootVersion = '4.0.6'
     versionCatalogs {
         gradlePluginLibs {
             version('spring-boot', springBootVersion)
-            version('test-logger', '3.2.0')
-            version('docker-compose', '0.17.6')
-            version('docker-remote-api', '9.3.1')
-            version('versions-update', '0.42.0')
-            version('node-gradle', '7.0.1')
-            version('sbom', '2.4.1')
+            version('test-logger', '4.0.0')
+            version('docker-compose', '0.17.21')
+            version('docker-remote-api', '10.0.0')
+            version('versions-update', '0.53.0')
+            version('node-gradle', '7.1.0')
+            version('sbom', '3.2.0')
 
             plugin('spring-boot', 'org.springframework.boot').versionRef('spring-boot')
             plugin('test-logger', 'com.adarshr.test-logger').versionRef('test-logger')
@@ -62,16 +62,20 @@ dependencyResolutionManagement {
         }
 
         a12Libs {
-            version('base', '29.3.0')
-            version('kernel', '30.8.1')
-            version('uaa', '9.3.2')
-            version('dataservices', '38.4.1')
+            version('base', '30.0.1')
+            version('kernel', '31.1.0')
+            version('uaa', '10.0.0')
+            version('dataservices', '39.0.2')
+            version('wcf', '1.1.1')
+            version('rmc-conversion', '0.4.2')
 
             library('uaa-authorization-a12-extension', 'com.mgmtp.a12.uaa', 'uaa-authorization-a12-extension').versionRef('uaa')
             library('uaa-authorization-introspector', 'com.mgmtp.a12.uaa', 'uaa-authorization-introspector').versionRef('uaa')
             library('dataservices-server-app', 'com.mgmtp.a12.dataservices', 'dataservices-server-app').versionRef('dataservices')
             library('dataservices-server-init-app', 'com.mgmtp.a12.dataservices', 'dataservices-server-init-app').versionRef('dataservices')
-            library("dataservices-data-seed", "com.mgmtp.a12.dataservices", "dataservices-data-seed").versionRef("dataservices")
+            library("dataservices-sme-workspace-support", "com.mgmtp.a12.dataservices", "dataservices-sme-workspace-support").versionRef("dataservices")
+            library('dataservices-wcf-cli', 'com.mgmtp.a12.dataservices.wcf', 'dataservices-wcf-cli').versionRef('wcf')
+            library('rmc-conversion', 'com.mgmtp.a12.rmc', 'conversion').versionRef('rmc-conversion')
 
             library('base-bom', 'com.mgmtp.a12.base', 'base-bom').versionRef('base')
             library('kernel-bom', 'com.mgmtp.a12.kernel', 'kernel-bom').versionRef('kernel')

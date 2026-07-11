@@ -68,4 +68,4 @@ dockerCompose {
     }
 }
 
-tasks.cyclonedxBom.enabled = false
+tasks.named('cyclonedxBom').configure { enabled = false }

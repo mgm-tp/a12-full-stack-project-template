@@ -66,7 +66,7 @@ services:
       MGMTP_A12_DATASERVICES_QUERY_REINDEXING_MODE: rebuild_index
       MGMTP_A12_UAA_AUTHENTICATION_PRINCIPAL_ACCESS-RIGHTS-RESOURCE: file:/var/lib/a12/data/import/auth/roles.yaml
       MGMTP_A12_UAA_AUTHORIZATION_CHILD-AUTHORIZATION-DEFINITIONS: file:/var/lib/a12/data/import/auth/childAuthorizationDefinition.json
-      MGMTP_A12_DATASERVICES_INITIALIZATION_IMPORT_MODELS_PATH: file:/var/lib/a12/data/import/models/
+      MGMTP_A12_DATASERVICES_INITIALIZATION_IMPORT_MODELS_PATH: file:/var/lib/a12/data/models
       MGMTP_A12_DATASERVICES_INITIALIZATION_SCRIPTS_JSONRPC_ENABLED: false
 
     depends_on:
@@ -83,6 +83,7 @@ services:
       - 8082:8080
     volumes:
       - ../import:/var/lib/a12/data/import
+      - ../build/wcf-output/data/models:/var/lib/a12/data/models
 
   postgres:
     image: ${DOCKER_REGISTRY_FOR_READ}/postgres:${POSTGRES_VERSION}
@@ -133,7 +134,7 @@ services:
       SPRING_DATASOURCES_CONTENTSTORE_JPA_DATABASE: postgresql
       SPRING_DATASOURCES_CONTENTSTORE_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
       MGMTP_A12_DATASERVICES_INITIALIZATION_SCRIPTS_JSONRPC_PATHS: file:/var/lib/a12/data/import/data/request/*.json
-      MGMTP_A12_DATASERVICES_INITIALIZATION_IMPORT_MODELS_PATH: file:/var/lib/a12/data/import/models/
+      MGMTP_A12_DATASERVICES_INITIALIZATION_IMPORT_MODELS_PATH: file:/var/lib/a12/data/models
     depends_on:
       postgres:
         condition: service_healthy
@@ -141,6 +142,7 @@ services:
       - a12_compose
     volumes:
       - ../import:/var/lib/a12/data/import
+      - ../build/wcf-output/data/models:/var/lib/a12/data/models
 
   keycloak:
     image: ${KEYCLOAK_REGISTRY}/keycloak/keycloak:${KEYCLOAK_VERSION}

@@ -33,16 +33,13 @@
 import { type PropsWithChildren, useMemo, useState } from "react";
 
 import {
-    type DefaultThemeType,
+    type BaseThemeConfig,
     createContext,
-    flatTheme,
+    getBaseTheme,
     useContextSelector
 } from "@com.mgmtp.a12.widgets/widgets-core";
-import { LoggerFactory } from "@com.mgmtp.a12.utils/utils-logging";
 
-import { isTheme } from "../utils/guards";
-
-const logger = LoggerFactory.getLogger("PT/ThemeContext");
+import { customThemes } from "../themes";
 
 interface ThemeContextType {
     theme: string;
@@ -51,49 +48,19 @@ interface ThemeContextType {
 
 export const THEME_KEY = "theme";
 
-function convertFileNameToDisplayName(filePath: string): string {
-    return filePath
-        .replaceAll(/(?:^\.\/|\.json$)/g, "")
-        .replaceAll(/[-_]+/g, " ")
-        .trim()
-        .replaceAll(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function loadThemesFromFolder(): { [key: string]: DefaultThemeType } {
-    try {
-        const context = require.context("../themes", false, /\.json$/);
-        const themes: { [key: string]: DefaultThemeType } = {};
-        context.keys().forEach((key: string) => {
-            const themeName = convertFileNameToDisplayName(key);
-            const themeData = context(key);
-            if (isTheme(themeData)) {
-                themes[themeName] = themeData;
-            } else {
-                logger.warn(`Theme "${themeName}" does not match the required theme structure and will be skipped.`);
-            }
-        });
-        return themes;
-    } catch {
-        return {};
-    }
-}
-
-export const THEMES: {
-    Flat: DefaultThemeType;
-    [key: string]: DefaultThemeType;
-} = {
-    Flat: flatTheme,
-    ...loadThemesFromFolder()
+export const THEMES: { Base: BaseThemeConfig; [key: string]: BaseThemeConfig } = {
+    Base: getBaseTheme(),
+    ...customThemes
 };
 
-export const THEME_NAMES = Object.keys(THEMES) as ["Flat"] & string[];
+export const THEME_NAMES = Object.keys(THEMES) as ["Base"] & string[];
 
 function getThemeNameByString(value: string | null | undefined): string {
     return typeof value === "string" && THEME_NAMES.includes(value) ? value : THEME_NAMES[0];
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-    theme: "Flat",
+    theme: "Base",
     setTheme: () => {}
 });
 ThemeContext.displayName = "ThemeContext";

@@ -2,7 +2,6 @@
   "compilerOptions": {
     "declaration": false,
     "declarationMap": false,
-    "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
@@ -11,15 +10,20 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      //"DOM.AsyncIterable", -> not supported by safari
       "ES2023",
       "ES2024.arraybuffer",
       "ES2024.collection",
       "ES2024.object",
       "ES2024.promise",
       "ES2024.regexp",
-      //"ES2024.sharedmemory", -> not supported by firefox
-      "ES2024.string"
+      //"ES2024.sharedmemory", -> newly available since November 2025
+      "ES2024.string",
+      "ES2025.collection",
+      "ES2025.float16",
+      "ES2025.intl",
+      "ES2025.iterator",
+      "ES2025.promise",
+      "ES2025.regexp"
     ],
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -36,10 +40,11 @@
     "outDir": "build/javascript",
     "preserveConstEnums": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "rootDir": "./src",
     "sourceMap": true,
+    "skipLibCheck": true,
     "strict": true,
-    "target": "ES2024",
+    "target": "ES2025",
     "tsBuildInfoFile": "./build/tsconfig.tsbuildinfo",
     "types": [
       "webpack-env"

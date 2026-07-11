@@ -34,22 +34,21 @@ import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
 import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
 import com.bmuschko.gradle.docker.tasks.image.Dockerfile
-import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
     alias(gradlePluginLibs.plugins.node.gradle)
 }
 
-npmInstall.configure {
-    args = ['--legacy-peer-deps']
-}
+//npmInstall.configure {
+//    args = ['--legacy-peer-deps']
+//}
 
 
 ext {
     imageLabels = ["name"       : "${calculateShortTag(clientName)}".toString(),
                    "vendor"     : "mgm technology partners GmbH",
                    "version"    : project.version,
-                   "release"    : rootProject.a12ReleaseVersion,
+                   "release"    : rootProject.a12ReleaseLine,
                    "summary"    : "A Nginx-based server for serving A12 Client",
                    "description": "The A12 Client is built around the established React/Redux ecosystem, integrates the A12 UI components like engines and widgets, and interact with the A12 Data Services in the backend via HTTP/REST endpoints."]
 }
@@ -103,7 +102,7 @@ tasks.register('lintFix', NpmTask) {
     args = ['run-script','lint:fix']
 }
 
-assemble.dependsOn compile
+tasks.named('assemble').configure { dependsOn('compile') }
 
 tasks.register('copyNginxConf', Sync) {
     group 'docker'
@@ -121,8 +120,8 @@ tasks.register('createDockerfile', Dockerfile) {
     def baseImage = "${dockerRegistryForRead}/${dockerClientBaseImage}"
 
     // NOTE: Apple Silicon users may experience bad performance
-    def currentArchitecture = DefaultNativePlatform.currentArchitecture
-    if (currentArchitecture.isArm() || (currentArchitecture.getName().toLowerCase() in ['aarch64','arm64'])) {
+    def osArch = System.getProperty("os.arch").toLowerCase()
+    if (osArch in ['aarch64', 'arm64']) {
         baseImage = "--platform=linux/amd64 $baseImage"
     }
 
@@ -183,4 +182,4 @@ tasks.register("cyclonedxBomNpm", NpxTask) {
 }
 
 // the report cyclonedxBom will be correctly replaced by cyclonedxBomNpm result
-tasks.cyclonedxBom.finalizedBy("cyclonedxBomNpm")
+tasks.named('cyclonedxBom').configure { finalizedBy('cyclonedxBomNpm') }

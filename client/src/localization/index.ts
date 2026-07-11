@@ -81,5 +81,5 @@ export const supportedLocales: LocalizedLocale[] = [
 const DATE_LOCALES: Record<string, DateLocale> = { en: enUS, de: de };
 
 export function getDateTimeResource(locale: Locale): DateTimeContextType {
-    return { locale: DATE_LOCALES[locale.language] ?? enUS };
+    return { locale: DATE_LOCALES[locale.language] ?? enUS, timeMode: "24h" };
 }
