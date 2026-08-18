@@ -33,16 +33,13 @@
 import { type PropsWithChildren, useMemo, useState } from "react";
 
 import {
-    type DefaultThemeType,
     createContext,
+    type DefaultThemeType,
     flatTheme,
     useContextSelector
 } from "@com.mgmtp.a12.widgets/widgets-core";
-import { LoggerFactory } from "@com.mgmtp.a12.utils/utils-logging";
 
-import { isTheme } from "../utils/guards";
-
-const logger = LoggerFactory.getLogger("PT/ThemeContext");
+import { customThemes } from "../themes";
 
 interface ThemeContextType {
     theme: string;
@@ -51,39 +48,9 @@ interface ThemeContextType {
 
 export const THEME_KEY = "theme";
 
-function convertFileNameToDisplayName(filePath: string): string {
-    return filePath
-        .replaceAll(/(?:^\.\/|\.json$)/g, "")
-        .replaceAll(/[-_]+/g, " ")
-        .trim()
-        .replaceAll(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function loadThemesFromFolder(): { [key: string]: DefaultThemeType } {
-    try {
-        const context = require.context("../themes", false, /\.json$/);
-        const themes: { [key: string]: DefaultThemeType } = {};
-        context.keys().forEach((key: string) => {
-            const themeName = convertFileNameToDisplayName(key);
-            const themeData = context(key);
-            if (isTheme(themeData)) {
-                themes[themeName] = themeData;
-            } else {
-                logger.warn(`Theme "${themeName}" does not match the required theme structure and will be skipped.`);
-            }
-        });
-        return themes;
-    } catch {
-        return {};
-    }
-}
-
-export const THEMES: {
-    Flat: DefaultThemeType;
-    [key: string]: DefaultThemeType;
-} = {
+export const THEMES: { Flat: DefaultThemeType; [key: string]: DefaultThemeType } = {
     Flat: flatTheme,
-    ...loadThemesFromFolder()
+    ...customThemes
 };
 
 export const THEME_NAMES = Object.keys(THEMES) as ["Flat"] & string[];

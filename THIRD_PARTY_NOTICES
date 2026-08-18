@@ -1,7 +1,7 @@
 THIRD_PARTY_NOTICES
 
-Component: A12 Project Template
-Generated: 2026-04-21 for mgm A12 Platform 2025.06-ext5
+Component: A12 Project Template with Workflows
+Generated: 2026-07-15 for mgm A12 Platform 2025.06-ext6
 
 The mgm A12 Platform is developed by mgm technology partners GmbH.
 
@@ -20,70 +20,70 @@ The following third-party components are included in this distribution:
 - clean-webpack-plugin 4.0.0, licensed under MIT
 	Copyright (c) 2015 John Agan
 	Source: https://github.com/johnagan/clean-webpack-plugin
-- @com.mgmtp.a12.base/base-model-api 29.3.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.base/base-model-api 29.3.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.client/client-core 16.2.1-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.client/client-core 16.2.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.client/client-data 16.2.1-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.client/client-data 16.2.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.contentengine/contentengine-core 0.11.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.contentengine/contentengine-core 0.11.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.contentengine/contentengine-default-element-library 0.11.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.contentengine/contentengine-default-element-library 0.11.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.crud/crud-core 2.3.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.crud/crud-core 2.3.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.dataservices/dataservices-access 38.4.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.dataservices/dataservices-access 38.4.3, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.expression/expression-core 2.0.6-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.expression/expression-core 2.0.6, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.formengine/formengine-content-elements 38.4.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.formengine/formengine-content-elements 38.4.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.formengine/formengine-core 38.4.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.formengine/formengine-core 38.4.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.kernel/kernel-core-runtime-api-ts 30.8.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.kernel/kernel-core-runtime-api-ts 30.8.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.kernel/kernel-md-facade 30.8.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.kernel/kernel-md-facade 30.8.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.overviewengine/overviewengine-core 38.3.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.overviewengine/overviewengine-core 38.3.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.relationshipengine/relationshipengine-core 2.3.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.relationshipengine/relationshipengine-core 2.3.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.treeengine/treeengine-core 10.3.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.treeengine/treeengine-core 10.3.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.uaa/uaa-authentication-a12-client 9.3.2-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.uaa/uaa-authentication-a12-client 9.4.0, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-collections 6.2.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-collections 6.2.0, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-connector 8.2.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-connector 8.2.3, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-localization 7.2.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-localization 7.2.0, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-localization-react 7.2.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-localization-react 7.2.0, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-logging 6.2.0-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-logging 6.2.0, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.widgets/widgets-core 38.2.1-rc.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.widgets/widgets-core 38.3.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
 - copy-webpack-plugin 10.2.4, licensed under MIT
@@ -215,6 +215,9 @@ The following third-party components are included in this distribution:
 - @typescript-eslint/eslint-plugin 8.46.1, licensed under MIT
 	Copyright (c) 2019 typescript-eslint and other contributors
 	Source: https://github.com/typescript-eslint/typescript-eslint
+- @typescript-eslint/eslint-plugin 8.56.1, licensed under MIT
+	Copyright (c) 2019 typescript-eslint and other contributors
+	Source: https://github.com/typescript-eslint/typescript-eslint
 - @typescript-eslint/parser 8.46.1, licensed under MIT
 	Copyright (c) 2019 typescript-eslint and other contributors
 	Source: https://github.com/typescript-eslint/typescript-eslint
@@ -255,60 +258,70 @@ The following third-party components are included in this distribution:
 	Copyright (c) 2015 Juho Vepsalainen
 	Source: https://github.com/survivejs/webpack-merge
 
-- ch.qos.logback/logback-classic 1.5.6, licensed under EPL-1.0
-	Copyright (C) 1999-2024, QOS.ch
-	Source: https://github.com/qos-ch/logback/
-- com.mgmtp.a12.base/base-bom 29.3.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-data-seed 38.4.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-parent 38.4.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-server-app 38.4.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-server-init-app 38.4.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-bom 30.8.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-md-document-v2 30.8.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-md-facade 30.8.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-md-typed-accessor-gen 30.8.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-md-util 30.8.0-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.uaa/uaa-authorization-a12-extension 9.3.2-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.uaa/uaa-authorization-introspector 9.3.2-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.uaa/uaa-bom 9.3.2-rc.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.puppycrawl.tools/checkstyle 10.15.0, licensed under LGPL-2.1-or-later
-	Copyright (c) 2001-2024 Checkstyle contributors
-	Source: https://checkstyle.org/
-- net.logstash.logback/logstash-logback-encoder 7.4, licensed under Apache-2.0
-	Copyright 2013-2025 the original author or authors.
-	Source: https://github.com/logfellow/logstash-logback-encoder
 - org.springframework.boot/spring-boot-configuration-processor 3.5.9, licensed under Apache-2.0
 	Copyright (c) 2012-2026 VMware, Inc.
 	Source: https://github.com/spring-projects/spring-boot
+- com.puppycrawl.tools/checkstyle 10.15.0, licensed under LGPL-2.1-or-later
+	Copyright (c) 2001-2024 Checkstyle contributors
+	Source: https://checkstyle.org/
+- com.mgmtp.a12.dataservices/dataservices-server-app 38.4.3, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.dataservices/dataservices-data-seed 38.4.3, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.uaa/uaa-authorization-a12-extension 9.4.0, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.uaa/uaa-authorization-introspector 9.4.0, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.dataservices/dataservices-parent 38.4.3, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- net.logstash.logback/logstash-logback-encoder 7.4, licensed under Apache-2.0
+	Copyright 2013-2025 the original author or authors.
+	Source: https://github.com/logfellow/logstash-logback-encoder
+- com.mgmtp.a12.kernel/kernel-md-util 30.8.5, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
 - org.springframework.boot/spring-boot-devtools 3.5.9, licensed under Apache-2.0
 	Copyright (c) 2012-2026 VMware, Inc.
 	Source: https://github.com/spring-projects/spring-boot
+- com.mgmtp.a12.kernel/kernel-md-document-v2 30.8.5, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.base/base-bom 29.3.1, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.kernel/kernel-bom 30.8.5, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.uaa/uaa-bom 9.4.0, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- ch.qos.logback/logback-classic 1.5.6, licensed under EPL-1.0
+	Copyright (C) 1999-2024, QOS.ch
+	Source: https://github.com/qos-ch/logback/
+- com.mgmtp.a12.kernel/kernel-md-facade 30.8.5, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.kernel/kernel-md-typed-accessor-gen 30.8.5, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.dataservices/dataservices-server-init-app 38.4.3, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+
+
+NOTICE file of playwright
+---------------------------
+
+Playwright
+Copyright (c) Microsoft Corporation
+
+This software contains code derived from the Puppeteer project (https://github.com/puppeteer/puppeteer),
+available under the Apache 2.0 license (https://github.com/puppeteer/puppeteer/blob/master/LICENSE).
 
 
 NOTICE file of org.springframework.boot
@@ -335,7 +348,6 @@ General Notice
 The mgm A12 Platform is dual-licensed under the EUPL-1.2 or a
 commercial license. Third-party components remain under their
 respective licenses. For details, see the file LICENSE.
-
 "mgm A12" is a registered trademark of mgm technology partners GmbH
 (EU/DE). All other trademarks are the property of their respective
 owners.

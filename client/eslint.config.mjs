@@ -59,7 +59,8 @@ export default [
             "**/scripts",
             "**/webpack.*.js",
             "prettier.config.js",
-            "eslint.config.mjs"
+            "eslint.config.mjs",
+            "**/*.generated.*"
         ]
     },
     {

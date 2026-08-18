@@ -49,7 +49,7 @@ ext {
     imageLabels = ["name"       : "${calculateShortTag(clientName)}".toString(),
                    "vendor"     : "mgm technology partners GmbH",
                    "version"    : project.version,
-                   "release"    : rootProject.a12ReleaseVersion,
+                   "release"    : rootProject.a12ReleaseLine,
                    "summary"    : "A Nginx-based server for serving A12 Client",
                    "description": "The A12 Client is built around the established React/Redux ecosystem, integrates the A12 UI components like engines and widgets, and interact with the A12 Data Services in the backend via HTTP/REST endpoints."]
 }
@@ -179,7 +179,8 @@ tasks.register("cyclonedxBomNpm", NpxTask) {
     group = "npm SBOM"
     description = "Generates an SBOM using @cyclonedx/cyclonedx-npm"
     command = "@cyclonedx/cyclonedx-npm"
-    args = ["--ignore-npm-errors", "--output-file", layout.buildDirectory.file("reports/cyclonedx.json").get().asFile.absolutePath]
+    // --package-lock-only builds the SBOM from package-lock.json instead of the installed node_modules tree.
+    args = ["--ignore-npm-errors", "--package-lock-only", "--output-file", layout.buildDirectory.file("reports/cyclonedx.json").get().asFile.absolutePath]
 }
 
 // the report cyclonedxBom will be correctly replaced by cyclonedxBomNpm result

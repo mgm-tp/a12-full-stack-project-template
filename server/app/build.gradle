@@ -41,7 +41,7 @@ ext {
     imageLabels = ["name"       : "${calculateShortTag(rootProject.serverName)}".toString(),
                    "vendor"     : "mgm technology partners GmbH",
                    "version"    : project.version,
-                   "release"    : rootProject.a12ReleaseVersion,
+                   "release"    : rootProject.a12ReleaseLine,
                    "summary"    : "A Data Services extensible server application that provides all functionalities to facilitate A12 Application",
                    "description": "A Data Services server with API and implementations to deal with models and documents supporting creation, retrieval, update, deletion and querying"]
 }

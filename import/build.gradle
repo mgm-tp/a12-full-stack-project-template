@@ -35,7 +35,7 @@ def hasPackableContent = hasContent(importDirectory)
 
 tasks.register('importsPackage', Zip) {
     group 'Publishing'
-    description 'Packages importable resources of ProjectTemplate to zip.'
+    description 'Packages importable resources of Project Template to zip.'
 
     from importDirectory
     exclude 'build','build.gradle'
@@ -53,10 +53,12 @@ if (hasPackableContent) {
     publishing {
         publications {
             importsZip(MavenPublication) {
-                groupId rootProject.group
-                artifactId getArtifactName()
+                // groupId/version are intentionally left unset: the maven-publish convention
+                // defaults them to project.group/project.version resolved lazily at publish
+                // time, after initProject has set the real coordinates on all projects.
+                // Setting them explicitly here would capture the gradle.properties placeholders.
+                artifactId = getArtifactName()
                 artifact source: importsPackage, extension: 'zip'
-                version project.version
                 pom {
                     name = 'Project Template Imports'
                     description = 'Packed resources to be imported to Project Template.'
@@ -65,7 +67,7 @@ if (hasPackableContent) {
         }
     }
 
-    publish {
+    tasks.named('publish').configure {
         dependsOn 'importsPackage'
     }
 }
@@ -88,4 +90,4 @@ String getArtifactName () {
     }
 }
 
-tasks.cyclonedxBom.enabled = false
+tasks.named('cyclonedxBom').configure { enabled = false }
