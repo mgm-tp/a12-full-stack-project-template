@@ -32,7 +32,7 @@
 
 import { test as base, expect, type Page, type BrowserContext } from "@playwright/test";
 
-import { StorageState, TestUsername } from "../types";
+import type { StorageState, TestUsername } from "../types";
 import { getUserStorageState } from "../utils/files";
 
 type WorkerFixtureOptions = {
@@ -66,6 +66,7 @@ export const test = base.extend<{}, WorkerFixtureOptions>({
                     try {
                         await context.close();
                     } catch (error) {
+                        // eslint-disable-next-line no-console
                         console.warn("Failed to close browser context:", error);
                     }
                 })

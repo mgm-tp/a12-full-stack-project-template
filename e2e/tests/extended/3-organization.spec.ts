@@ -40,7 +40,7 @@ test.describe.serial("Organization Module", () => {
     test.describe("Setup test data", () => {
         let overviewPage: OverviewPage;
 
-        const testData: { personData: TestData[]; companyData: TestData[] }[] = [
+        const testData: { personData: TestData[]; companyData: TestData[]; additionalRoleData: TestData[] }[] = [
             {
                 personData: [
                     { label: "First Name", value: "Safe", type: DataType.String },
@@ -70,7 +70,8 @@ test.describe.serial("Organization Module", () => {
                         value: "https://safeheaven.com",
                         type: DataType.String
                     }
-                ]
+                ],
+                additionalRoleData: [{ label: "Role", value: "Executive", type: DataType.Select }]
             },
             {
                 personData: [
@@ -101,7 +102,8 @@ test.describe.serial("Organization Module", () => {
                         value: "https://businesspartner.com",
                         type: DataType.String
                     }
-                ]
+                ],
+                additionalRoleData: [{ label: "Role", value: "Operational", type: DataType.Select }]
             }
         ];
 
@@ -114,8 +116,8 @@ test.describe.serial("Organization Module", () => {
         });
 
         test("should add persons with companies", async () => {
-            for (const { personData, companyData } of testData) {
-                await overviewPage.addComposeDocument(personData, companyData);
+            for (const { personData, companyData, additionalRoleData } of testData) {
+                await overviewPage.addComposeDocument(personData, companyData, additionalRoleData);
             }
         });
     });

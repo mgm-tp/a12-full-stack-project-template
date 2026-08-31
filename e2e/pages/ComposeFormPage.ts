@@ -33,23 +33,30 @@
 import type { Locator } from "@playwright/test";
 
 import { expect, type Page } from "../fixtures";
-import type { TestData } from "../types";
+import { type TestData } from "../types";
 
 import { FormPage } from "./FormPage";
 
 export class ComposeFormPage extends FormPage {
     protected readonly relationForm: Locator;
+    protected readonly additionalFieldsForm: Locator;
 
     constructor(
-        protected readonly page: Page,
-        protected readonly formLocator: Locator = page.getByRole("form").first(),
-        protected readonly relationFormLocator: Locator = page.getByRole("form").nth(1)
+        protected override readonly page: Page,
+        protected override readonly formLocator: Locator = page.getByRole("form").first(),
+        protected readonly relationFormLocator: Locator = page.getByRole("form").nth(1),
+        protected readonly additionalFieldsFormLocator: Locator = page.getByRole("dialog").getByRole("form")
     ) {
         super(page, formLocator);
         this.relationForm = relationFormLocator;
+        this.additionalFieldsForm = additionalFieldsFormLocator;
     }
 
-    async createDocument(data: TestData[], relationData: TestData[] = []): Promise<void> {
+    override async createDocument(
+        data: TestData[],
+        relationData: TestData[] = [],
+        additionalFieldsData: TestData[] = []
+    ): Promise<void> {
         for (const field of data) {
             await this.inputFieldValue(field);
         }
@@ -67,7 +74,19 @@ export class ComposeFormPage extends FormPage {
             await relationForm.inputFieldValue(field);
         }
 
-        await relationForm.saveForm();
+        if (additionalFieldsData.length === 0) {
+            await relationForm.saveForm();
+        } else {
+            await this.relationForm.getByRole("button").filter({ hasText: "Save" }).click();
+            const additionalFieldsForm = new FormPage(this.page, this.additionalFieldsForm);
+            await expect(this.additionalFieldsForm).toBeVisible();
+
+            for (const field of additionalFieldsData) {
+                await additionalFieldsForm.inputFieldValue(field);
+            }
+            await additionalFieldsForm.saveForm();
+        }
+
         await this.saveForm();
     }
 }

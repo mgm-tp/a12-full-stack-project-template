@@ -39,6 +39,7 @@ export enum TestID {
     CONTENTBOX_TITLE = "contentbox-title",
     FILE_UPLOAD_CONTENT_INNER = "file-upload-content-inner",
     FILE_UPLOAD_CONTROL = "file-upload-control",
+    FILE_UPLOAD_ERROR_MESSAGE = "file-upload-error-message",
     FILE_UPLOAD_INPUT = "file-upload-input",
     FORM = "form",
     HEADER_TRIGGER_TEXT = "header-trigger-text",
@@ -75,4 +76,9 @@ export enum CustomDataTestID {
 
 export enum Attribute {
     DATA_TREE_LEVEL = "data-tree-level"
+}
+
+export enum LoginFormLocators {
+    USERNAME = "#username",
+    PASSWORD = "#password"
 }

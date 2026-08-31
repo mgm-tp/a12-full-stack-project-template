@@ -31,7 +31,6 @@
  */
 
 import {
-    combineFeatures,
     createA12ApplicationSetup,
     addCustomSagas,
     addAdditionalMiddlewares,
@@ -41,14 +40,17 @@ import {
     APPLICATION_MODEL_PLACEHOLDER,
     ModelActions,
     type A12ApplicationConfig,
-    ApplicationFactories
+    combineFeatures
 } from "@com.mgmtp.a12.client/client-core";
 import { withPlatformModelLoader } from "@com.mgmtp.a12.client/client-core/modelLoader";
 import { withDirtyHandling } from "@com.mgmtp.a12.client/client-core/dirtyHandling";
 import { withLocalization } from "@com.mgmtp.a12.client/client-core/localization";
 import { withNotifications } from "@com.mgmtp.a12.client/client-core/notification";
-import { platformAttachmentLoader } from "@com.mgmtp.a12.formengine/formengine-core";
-import { withRelationshipFormEngine } from "@com.mgmtp.a12.relationshipengine/relationshipengine-core";
+import { withFormEngine } from "@com.mgmtp.a12.formengine/formengine-core";
+import {
+    withRelationshipEngine,
+    RelationshipEngineFactories
+} from "@com.mgmtp.a12.relationshipengine/relationshipengine-core";
 import { withOverviewEngine } from "@com.mgmtp.a12.overviewengine/overviewengine-core";
 import { withTreeEngine } from "@com.mgmtp.a12.treeengine/treeengine-core";
 import { withCRUD } from "@com.mgmtp.a12.crud/crud-core";
@@ -56,6 +58,7 @@ import { withDeepLinking } from "@com.mgmtp.a12.client/client-core/deepLinking";
 import { withDataServicesConfiguration } from "@com.mgmtp.a12.client/client-core/dataServicesAdapter";
 import { withContentEngine } from "@com.mgmtp.a12.contentengine/contentengine-core";
 import { DefaultElementLibrary } from "@com.mgmtp.a12.contentengine/contentengine-default-element-library";
+import { withUaa } from "@com.mgmtp.a12.uaa/uaa-authentication-a12-client";
 
 import { registerModulesOnSetModelGraphMiddleware, unregisterModulesOnLogoutMiddleware } from "./modules";
 import { isProduction } from "./config";
@@ -65,18 +68,6 @@ import { enginesViewMap } from "./app/EnginesViewMap";
 import { CustomApplicationFrameLayout } from "./app/LayoutProvider";
 import { DEFAULT_TRANSLATIONS, supportedLocales, getDateTimeResource } from "./localization";
 import { withKeycloak } from "./uaa/withKeycloak";
-import { withUaa } from "./uaa/withUaa";
-
-function assertFullyConfigured(
-    config: A12ApplicationConfig
-): asserts config is A12ApplicationConfig<ApplicationFactories.Config> {
-    if (!config.config.model) {
-        throw new Error("config.model is required - did you forget withModel()?");
-    }
-    if (!config.config.modelLoader) {
-        throw new Error("config.modelLoader is required - did you forget withPlatformModelLoader()?");
-    }
-}
 
 export function setup() {
     const initialConfig: A12ApplicationConfig = {
@@ -85,9 +76,7 @@ export function setup() {
             composeEnhancer: isProduction ? undefined : enableReduxDevTools()
         },
         formEngine: {
-            sagas: {
-                attachmentLoader: platformAttachmentLoader
-            }
+            sagas: RelationshipEngineFactories.createFormEngineSagaOptions()
         },
         localization: {
             supportedLocales,
@@ -105,47 +94,42 @@ export function setup() {
             config: {
                 applyTriggers: [ModelActions.addModulesApplicationModels]
             }
+        },
+        contentEngine: {
+            elementLibraryId: DefaultElementLibrary.get().id
         }
     };
 
-    const a12Features = combineFeatures(
-        withModel(APPLICATION_MODEL_PLACEHOLDER),
-        withDataServicesConfiguration,
-        withOverviewEngine,
-        withRelationshipFormEngine,
-        withCRUD,
-        withTreeEngine,
-        withContentEngine(DefaultElementLibrary.get().id),
-        withPlatformModelLoader
-    );
-
-    const a12ExtensionFeatures = combineFeatures(withDirtyHandling, withDeepLinking);
-
-    const viewAndLayoutFeatures = combineFeatures(
-        addView("TreeEngine", enginesViewMap.TreeEngine),
-        addView("FormEngine", enginesViewMap.FormEngine),
-        addView("OverviewEngine", enginesViewMap.OverviewEngine),
-        addView("ContentEngine", enginesViewMap.ContentEngine),
-        addLayout("ApplicationFrame", { component: CustomApplicationFrameLayout })
-    );
-
-    const applicationFeatures = combineFeatures(
-        viewAndLayoutFeatures,
-        addAdditionalMiddlewares(registerModulesOnSetModelGraphMiddleware, unregisterModulesOnLogoutMiddleware),
-        addCustomSagas(LoadModelGraphSaga)
-    );
-
+    // * Can use intermediate variable after A12C-3314 is done
     const configured = combineFeatures(
-        withLocalization,
-        withNotifications,
-        withUaa,
-        withKeycloak,
-        a12Features,
-        a12ExtensionFeatures,
-        applicationFeatures
-    )(initialConfig);
+        combineFeatures(
+            // * Update after A12C-3313 is done
+            withModel(APPLICATION_MODEL_PLACEHOLDER),
+            withDataServicesConfiguration,
+            withFormEngine,
+            withOverviewEngine,
+            withRelationshipEngine,
+            withCRUD,
+            withTreeEngine,
+            withContentEngine,
+            withPlatformModelLoader
+        ),
 
-    assertFullyConfigured(configured);
+        combineFeatures(withLocalization, withNotifications, withUaa, withKeycloak, withDirtyHandling, withDeepLinking),
+
+        combineFeatures(
+            addView("TreeEngine", enginesViewMap.TreeEngine),
+            addView("FormEngine", enginesViewMap.FormEngine),
+            addView("OverviewEngine", enginesViewMap.OverviewEngine),
+            addView("ContentEngine", enginesViewMap.ContentEngine),
+            addLayout("ApplicationFrame", { component: CustomApplicationFrameLayout })
+        ),
+
+        combineFeatures(
+            addAdditionalMiddlewares(registerModulesOnSetModelGraphMiddleware, unregisterModulesOnLogoutMiddleware),
+            addCustomSagas(LoadModelGraphSaga)
+        )
+    )(initialConfig);
 
     const { store, initialActions, Component } = createA12ApplicationSetup(configured);
 

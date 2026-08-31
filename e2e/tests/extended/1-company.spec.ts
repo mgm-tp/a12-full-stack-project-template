@@ -102,7 +102,7 @@ test.describe("Company Module", () => {
         });
 
         test("should add logo for company", async () => {
-            const row = overviewPage.getRow(companyData[0].value);
+            const row = overviewPage.getRow(companyData[0]!.value);
             await row.click();
 
             await formPage.toBeVisible();
@@ -114,20 +114,20 @@ test.describe("Company Module", () => {
         });
 
         test("should update a company", async () => {
-            const row = overviewPage.getRow(companyData[0].value);
+            const row = overviewPage.getRow(companyData[0]!.value);
             await row.click();
 
             await formPage.toBeVisible();
             await formPage.updateDocument(updateData);
             await formPage.toBeHidden();
 
-            await overviewPage.assertDocumentsInTable([updateData[0].value]);
+            await overviewPage.assertDocumentsInTable([updateData[0]!.value]);
         });
 
         test("should add 3 addresses", async () => {
             const sectionHeadlineLabel = "Address";
 
-            const row = overviewPage.getRow(updateData[0].value);
+            const row = overviewPage.getRow(updateData[0]!.value);
             await row.click();
 
             await formPage.toBeVisible();
@@ -142,7 +142,7 @@ test.describe("Company Module", () => {
 
         test("should add 3 phone numbers", async () => {
             const sectionHeadlineLabel = "Phone";
-            const row = overviewPage.getRow(updateData[0].value);
+            const row = overviewPage.getRow(updateData[0]!.value);
             await row.click();
             await formPage.toBeVisible();
             await formPage.inputInlineRepeatFieldValues(sectionHeadlineLabel, phoneNumberData);
@@ -155,7 +155,7 @@ test.describe("Company Module", () => {
         });
 
         test("should delete a company", async () => {
-            await overviewPage.deleteDocument(updateData[0].value);
+            await overviewPage.deleteDocument(updateData[0]!.value);
         });
     });
 });

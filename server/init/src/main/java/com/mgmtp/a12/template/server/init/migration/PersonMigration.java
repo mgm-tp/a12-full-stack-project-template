@@ -36,12 +36,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.node.ObjectNode;
 import com.mgmtp.a12.dataservices.common.events.CommonDataServicesEventListener;
 import com.mgmtp.a12.dataservices.document.DataServicesDocument;
 import com.mgmtp.a12.dataservices.document.DocumentReference;
@@ -52,12 +50,15 @@ import com.mgmtp.a12.dataservices.migration.MigrationStep;
 import com.mgmtp.a12.dataservices.migration.MigrationTask;
 import com.mgmtp.a12.uaa.authentication.backend.Authenticated;
 import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 
 @MigrationStep(version = "38.3.4", name = "Data migration of Person Document")
 @Component
 public class PersonMigration {
 
-    private static final String MODEL_TO_MIGRATE = "Person_DM";
+    private static final String MODEL_TO_MIGRATE = "Person_Dc";
     private static final String REMOVED_FIELD_PATH = "/Person/PersonalData/PlaceOfBirth";
     private final IDocumentRepository documentRepository;
     private final DocumentService documentService;
@@ -89,7 +90,7 @@ public class PersonMigration {
     }
 
     @CommonDataServicesEventListener(condition = "@migrationConfiguration.isEnabled() &&"
-            + "#afterRepositoryLoadEvent.documentReference.documentModelName.equalsIgnoreCase('Person_DM')")
+            + "#afterRepositoryLoadEvent.documentReference.documentModelName.equalsIgnoreCase('Person_Dc')")
     public void listenOnDocumentLoadFromRepository(DocumentAfterRepositoryLoadEvent afterRepositoryLoadEvent)
             throws IllegalArgumentException, JacksonException {
         String documentContent = afterRepositoryLoadEvent.getDocumentContent();

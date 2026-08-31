@@ -41,6 +41,7 @@ plugins {
 }
 apply from: 'copyright/copyright.gradle'
 
+
 idea {
     module {
         downloadSources = true

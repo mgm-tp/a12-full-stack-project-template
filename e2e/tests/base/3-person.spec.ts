@@ -113,6 +113,15 @@ const profileData: FileTestData = {
     type: DataType.File
 };
 
+const invalidAttachmentData: FileTestData = {
+    locator: `[data-role=${TestID.FILE_UPLOAD_CONTROL}]`,
+    filePath: fileURLToPath(new URL("../../fixtures/index.ts", import.meta.url)),
+    value: "index.ts",
+    type: DataType.File
+};
+
+const INVALID_ATTACHMENT_ERROR = /Invalid MIME type\.$/;
+
 const phoneNumberData: FieldTestData[][] = [
     [{ label: "Phone Number", value: "123456789", type: DataType.String }],
     [
@@ -146,7 +155,7 @@ const addressData: FieldTestData[][] = [
     ]
 ];
 
-const newDateOfBirth = updateData[1].value;
+const newDateOfBirth = updateData[1]!.value;
 
 test.describe.serial("Person Module", () => {
     test.describe("Person Module - CRUD", () => {
@@ -167,8 +176,17 @@ test.describe.serial("Person Module", () => {
             await overviewPage.addDocument(personData);
         });
 
+        test("should validate invalid attachment", async () => {
+            const row = overviewPage.getRow(personData[0]!.value);
+            await row.click();
+
+            await formPage.toBeVisible();
+            await formPage.uploadInvalidFileField(invalidAttachmentData, INVALID_ATTACHMENT_ERROR);
+            await formPage.cancelForm();
+        });
+
         test("should add profile picture for person", async () => {
-            const row = overviewPage.getRow(personData[0].value);
+            const row = overviewPage.getRow(personData[0]!.value);
             await row.click();
 
             await formPage.toBeVisible();
@@ -247,8 +265,8 @@ test.describe.serial("Person Module", () => {
             test(`should show documents by ${user} ownership accordingly`, async ({ getPageAs }) => {
                 const { page, overviewPage } = await setupTest(user as TestUsername, getPageAs);
 
-                await overviewPage.assertDocumentsInTable([testData[0].value]);
-                await page.getByTestId(TestID.TABLE_BODY_ROW).filter({ hasText: testData[0].value }).click();
+                await overviewPage.assertDocumentsInTable([testData[0]!.value]);
+                await page.getByTestId(TestID.TABLE_BODY_ROW).filter({ hasText: testData[0]!.value }).click();
 
                 const formPage = new FormPage(page);
                 await formPage.toBeVisible();
@@ -259,7 +277,7 @@ test.describe.serial("Person Module", () => {
         Object.entries(ownershipTestData).forEach(([user, testData]) => {
             test(`Owner ${user} can delete its document`, async ({ getPageAs }) => {
                 const { overviewPage } = await setupTest(user as TestUsername, getPageAs);
-                await overviewPage.deleteDocument(testData[0].value);
+                await overviewPage.deleteDocument(testData[0]!.value);
             });
         });
     });

@@ -48,7 +48,7 @@ import {
 import { ThemeContextProvider, THEMES, useThemeContext } from "../ThemeContext";
 
 /**
- * Base application page providing UI infrastructure: size context, drag-and-drop, notifications, and progress indicator.
+ * Base application page providing UI infrastructure: size context, drag-and-drop, and progress indicator.
  */
 const BasePage = ({ children }: PropsWithChildren): ReactElement => {
     const { breakPoint } = useWindowSize();

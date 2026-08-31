@@ -30,11 +30,10 @@
  * LEGALLY INVALID. SEE THE RESPECTIVE LICENSE TEXT FOR DETAILS.
  */
 
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 
+import { BasePage } from "../../pages/BasePage";
 import { type TestUsername, USERNAMES } from "../../types";
-import USERS from "../../fixtures/users.json" with { type: "json" };
-import { TestID } from "../../types/testIds";
 import { ensureAuthDirExists, getUserAuthStorageStatePath } from "../../utils/files";
 
 test("Auth setup", async ({ browser }) => {
@@ -43,18 +42,9 @@ test("Auth setup", async ({ browser }) => {
     async function setupAuthForUser(username: TestUsername) {
         const context = await browser.newContext();
         const page = await context.newPage();
-        const user = USERS[username];
-        await page.goto("/");
-        await page.fill("#username", user.username);
-        await page.fill("#password", user.password);
-        await page.press("#password", "Enter");
 
-        const popupTrigger = page
-            .getByTestId(TestID.APPLICATION_HEADER)
-            .getByTestId(TestID.POPUP_TRIGGER_ELEMENT)
-            .filter({ hasText: username })
-            .first();
-        await expect(popupTrigger).toBeVisible({ timeout: 30_000 });
+        await new BasePage(page).login(username);
+
         await context.storageState({ path: getUserAuthStorageStatePath(username) });
     }
 

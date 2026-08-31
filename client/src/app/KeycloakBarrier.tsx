@@ -37,12 +37,15 @@ import { AuthenticationState, UaaSelectors } from "@com.mgmtp.a12.uaa/uaa-authen
 import { GlobalMessageBox } from "@com.mgmtp.a12.widgets/widgets-core";
 
 import { RESOURCE_KEYS, useLocalizer } from "../localization";
+import { useOidcLogin } from "../uaa/useOidcLogin";
 
 export function KeycloakBarrier({ children }: Readonly<PropsWithChildren>): ReactNode {
     const authenticatedState = useSelector(UaaSelectors.state);
     const isAuthenticated = authenticatedState === AuthenticationState.AUTHENTICATED;
     const uaaError = !!useSelector(UaaSelectors.error);
     const localizer = useLocalizer();
+
+    useOidcLogin();
 
     if (!isAuthenticated) {
         return (

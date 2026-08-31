@@ -44,7 +44,7 @@ import { ComposeFormPage } from "./ComposeFormPage";
 export class OverviewPage extends BasePage {
     private readonly table: Locator;
 
-    constructor(protected readonly page: Page) {
+    constructor(protected override readonly page: Page) {
         super(page);
         this.table = page.getByTestId(TestID.TABLE);
     }
@@ -64,20 +64,27 @@ export class OverviewPage extends BasePage {
         await formPage.finishedLoading();
         await formPage.toBeVisible();
         await formPage.createDocument(document);
-        await this.assertDocumentsInTable([document[0].value]);
+        await this.assertDocumentsInTable([document[0]!.value]);
     }
 
     async addComposeDocument(
         document: TestData[],
         relationData: TestData[] = [],
+        additionalFieldsData?: TestData[],
         formLocator?: Locator,
-        relationFormLocator?: Locator
+        relationFormLocator?: Locator,
+        additionalFieldsFormLocator?: Locator
     ) {
         await this.page.getByRole("button", { name: "Add" }).click();
-        const composeFormPage = new ComposeFormPage(this.page, formLocator, relationFormLocator);
+        const composeFormPage = new ComposeFormPage(
+            this.page,
+            formLocator,
+            relationFormLocator,
+            additionalFieldsFormLocator
+        );
         await composeFormPage.toBeVisible();
-        await composeFormPage.createDocument(document, relationData);
-        await this.assertDocumentsInTable([document[0].value]);
+        await composeFormPage.createDocument(document, relationData, additionalFieldsData);
+        await this.assertDocumentsInTable([document[0]!.value]);
     }
 
     getRow(document: string): Locator {

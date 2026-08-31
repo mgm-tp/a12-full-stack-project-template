@@ -34,6 +34,7 @@ plugins {
     id 'java'
     alias(gradlePluginLibs.plugins.spring.boot)
     alias(gradlePluginLibs.plugins.test.logger)
+    alias(gradlePluginLibs.plugins.rewrite)
 }
 
 ext {
@@ -69,8 +70,8 @@ springBoot {
     mainClass = 'com.mgmtp.a12.template.server.init.ProjectTemplateInitApplication'
 }
 
-bootRun bootRunVar
-
 artifacts artifactsVar
 
 publishing publishingVar
+
+rewrite rewriteVar

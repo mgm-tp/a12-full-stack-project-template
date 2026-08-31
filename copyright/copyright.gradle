@@ -196,25 +196,11 @@ def headersMatch = { String existingHeader, String template, Map commentStyle ->
     normalizeHeader(existingHeader) == normalizeHeader(expectedHeader)
 }
 
-def isRootGradleProperties = { File file ->
-    file.name == 'gradle.properties' && file.parentFile == project.rootDir
-}
-
-def removeTimestampPrefix = { String content ->
-    def GRADLE_PROPERTIES_TIMESTAMP_PATTERN = ~/^(#[A-Z][a-z]{2}, \d{2} [A-Z][a-z]{2} \d{4} [\d:]{8} [+-]\d{4}\n)/
-    content.replaceFirst(GRADLE_PROPERTIES_TIMESTAMP_PATTERN, '')
-}
-
 def checkFile = { File file, String template, int year ->
     def commentStyle = getCommentStyle(file)
     if (commentStyle == null) return []
 
     def content = file.text.replaceAll(/\r\n|\r/, '\n')  // Normalize line endings
-
-    // Strip Gradle-written timestamp from root gradle.properties (Java Properties.store() always adds one)
-    if (isRootGradleProperties(file)) {
-        content = removeTimestampPrefix(content)
-    }
 
     def existingHeader = extractExistingHeader(content, commentStyle)
     def startYear = extractStartYear(content)

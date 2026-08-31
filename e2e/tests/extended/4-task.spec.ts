@@ -49,7 +49,7 @@ const taskData: TestData[] = [
     { label: "Status", value: "Done", type: DataType.Select }
 ];
 
-test.describe.serial("Task CDM Module", () => {
+test.describe.serial("Task Composed Document Module", () => {
     let overviewPage: OverviewPage;
     test.beforeEach(async ({ getPageAs }) => {
         const page = await getPageAs("admin");
@@ -64,6 +64,6 @@ test.describe.serial("Task CDM Module", () => {
     });
 
     test("should export documents to CSV", async () => {
-        await overviewPage.exportDocumentsToCSV("export_Task_CDM.csv");
+        await overviewPage.exportDocumentsToCSV("export_Task_Cd.csv");
     });
 });

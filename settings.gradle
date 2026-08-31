@@ -58,16 +58,17 @@ dependencyResolutionManagement {
             plugin('docker-remote-api', 'com.bmuschko.docker-remote-api').versionRef('docker-remote-api')
             plugin('versions-update', 'com.github.ben-manes.versions').versionRef('versions-update')
             plugin('node-gradle', 'com.github.node-gradle.node').versionRef('node-gradle')
+            plugin('rewrite', 'org.openrewrite.rewrite').version('7.37.0')
             plugin('sbom', 'org.cyclonedx.bom').versionRef('sbom')
         }
 
         a12Libs {
-            version('base', '30.0.1')
-            version('kernel', '31.1.0')
-            version('uaa', '10.0.0')
-            version('dataservices', '39.0.2')
-            version('wcf', '1.1.1')
-            version('rmc-conversion', '0.4.2')
+            version('base', '30.0.2')
+            version('kernel', '31.1.1')
+            version('uaa', '10.0.1')
+            version('dataservices', '39.0.3')
+            version('wcf', '1.1.3')
+            version('rmc-conversion', '0.5.1')
 
             library('uaa-authorization-a12-extension', 'com.mgmtp.a12.uaa', 'uaa-authorization-a12-extension').versionRef('uaa')
             library('uaa-authorization-introspector', 'com.mgmtp.a12.uaa', 'uaa-authorization-introspector').versionRef('uaa')

@@ -43,7 +43,7 @@ import { BasePage } from "./BasePage";
 export class FormPage extends BasePage {
     protected readonly form: Locator;
     constructor(
-        protected readonly page: Page,
+        protected override readonly page: Page,
         protected readonly formLocator: Locator = page.getByRole("form")
     ) {
         super(page);
@@ -136,7 +136,7 @@ export class FormPage extends BasePage {
         await expect(rows).toHaveCount(testData.length);
 
         for (let i = 0; i < testData.length; i++) {
-            for (const field of testData[i]) {
+            for (const field of testData[i]!) {
                 await this.assertFieldValue(field, rows.nth(i));
             }
         }
@@ -157,6 +157,11 @@ export class FormPage extends BasePage {
                 await this.inputFieldValue(field, row);
             }
         }
+    }
+
+    async cancelForm() {
+        await this.form.getByRole("button", { name: "Cancel" }).click();
+        await this.toBeHidden();
     }
 
     async saveForm(shouldCloseForm = true) {
@@ -201,5 +206,18 @@ export class FormPage extends BasePage {
         await expect(
             this.form.locator(`${fieldControlLocator} [data-role=${TestID.FILE_UPLOAD_CONTENT_INNER}] img`)
         ).toBeVisible();
+    }
+
+    async uploadInvalidFileField(testData: FileTestData, expectedErrorMessage: string | RegExp) {
+        const { locator: fieldControlLocator, filePath } = testData;
+        await this.form
+            .locator(`${fieldControlLocator} [data-role=${TestID.FILE_UPLOAD_INPUT}]`)
+            .setInputFiles(filePath);
+        await waitForApiReponse({
+            page: this.page,
+            apiPath: API_PATH.ATTACHMENT,
+            expectedStatusCode: 400
+        });
+        await expect(this.form.getByTestId(TestID.FILE_UPLOAD_ERROR_MESSAGE)).toHaveText(expectedErrorMessage);
     }
 }

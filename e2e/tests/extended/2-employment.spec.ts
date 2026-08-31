@@ -62,6 +62,8 @@ const companyData: FieldTestData[] = [
     { label: "Website", value: "https://ravenguard.com", type: DataType.String }
 ];
 
+const additionalRoleData: FieldTestData[] = [{ label: "Role", value: "Executive", type: DataType.Select }];
+
 test.describe("Employment Module", () => {
     test.describe.serial("Employment Module - Create", () => {
         let overviewPage: OverviewPage;
@@ -74,12 +76,12 @@ test.describe("Employment Module", () => {
         });
 
         test("should create a new employment", async () => {
-            await overviewPage.addComposeDocument(personData, companyData);
+            await overviewPage.addComposeDocument(personData, companyData, additionalRoleData);
 
-            await overviewPage.assertThumbnailInTable("image.png", overviewPage.getRow(personData[0].value));
+            await overviewPage.assertThumbnailInTable("image.png", overviewPage.getRow(personData[0]!.value));
 
             await overviewPage.clickMenuItem("Employment");
-            await overviewPage.assertDocumentsInTable([companyData[0].value]);
+            await overviewPage.assertDocumentsInTable([companyData[0]!.value]);
         });
     });
 });

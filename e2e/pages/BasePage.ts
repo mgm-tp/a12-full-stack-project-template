@@ -33,7 +33,9 @@
 import type { Locator } from "@playwright/test";
 
 import { expect, type Page } from "../fixtures";
-import { TestID } from "../types/testIds";
+import USERS from "../fixtures/users.json" with { type: "json" };
+import type { TestUsername } from "../types";
+import { LoginFormLocators, TestID } from "../types/testIds";
 
 export class BasePage {
     constructor(protected readonly page: Page) {}
@@ -57,6 +59,25 @@ export class BasePage {
             .filter({ has: this.page.getByText(label, { exact: true }) })
             .click();
         await this.finishedLoading();
+    }
+
+    async login(username: TestUsername) {
+        const user = USERS[username];
+
+        await this.page.goto("/");
+        await this.page.fill(LoginFormLocators.USERNAME, user.username);
+        await this.page.fill(LoginFormLocators.PASSWORD, user.password);
+        await this.page.press(LoginFormLocators.PASSWORD, "Enter");
+
+        await expect(this.page.getByTestId(TestID.HEADER_TRIGGER_TEXT).filter({ hasText: username })).toBeVisible({
+            timeout: 30_000
+        });
+    }
+
+    async logout(username: string) {
+        await this.page.getByTestId(TestID.HEADER_TRIGGER_TEXT).filter({ hasText: username }).click();
+        await this.page.getByTestId(TestID.POPUP_MENU).getByRole("button", { name: "Logout" }).click();
+        await expect(this.page.locator(LoginFormLocators.USERNAME)).toBeVisible({ timeout: 30_000 });
     }
 
     async switchOnEnglish() {

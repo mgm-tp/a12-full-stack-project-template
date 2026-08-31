@@ -33,7 +33,6 @@
 import {
     addAdditionalMiddlewares,
     addCustomSagas,
-    addInitialAction,
     addWrapper,
     combineFeatures,
     setConfigured
@@ -44,7 +43,6 @@ import { KeycloakBarrier } from "../app/KeycloakBarrier";
 import { setLocaleKeycloakOnLoginMiddleware } from "../middlewares";
 
 import { setRolesForUserAfterTokenRefresh } from "./sagas";
-import { uaaIntegration } from "./integration";
 
 type A12ApplicationConfigWithKeycloak = A12ApplicationConfig & { keycloak?: unknown };
 type ApplicationWithKeycloakConfig = RequireFeatures<A12ApplicationConfigWithKeycloak, { uaa: true; keycloak?: never }>;
@@ -55,21 +53,7 @@ export const addKeycloakMiddlewares = <T extends ApplicationWithKeycloakConfig>(
 export const addKeycloakSagas = <T extends ApplicationWithKeycloakConfig>(cfg: T) =>
     addCustomSagas<T>(setRolesForUserAfterTokenRefresh)(cfg);
 
-export const addKeycloakInitialActions = <T extends ApplicationWithKeycloakConfig>(cfg: T) => {
-    const configuration = cfg.uaa?.configuration;
-    return addInitialAction<T>(async (store) => {
-        if (configuration) {
-            await uaaIntegration({ ...configuration, store });
-        }
-    })(cfg);
-};
-
 export const withKeycloak = <T extends ApplicationWithKeycloakConfig>(cfg: T) =>
     setConfigured<T, "keycloak">("keycloak")(
-        combineFeatures(
-            addKeycloakMiddlewares,
-            addKeycloakSagas,
-            addKeycloakInitialActions,
-            addWrapper(KeycloakBarrier)
-        )(cfg)
+        combineFeatures(addKeycloakMiddlewares, addKeycloakSagas, addWrapper(KeycloakBarrier))(cfg)
     );

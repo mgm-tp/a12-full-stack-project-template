@@ -34,6 +34,7 @@ plugins {
     id 'java'
     alias(gradlePluginLibs.plugins.spring.boot)
     alias(gradlePluginLibs.plugins.test.logger)
+    alias(gradlePluginLibs.plugins.rewrite)
 }
 
 ext {
@@ -107,9 +108,11 @@ tasks.register('runTypedAccessorGenerator', JavaExec) {
     def packagePrefix = 'com.mgmtp.a12.template.server.typings'
 
     doFirst {
-        def documentModels = fileTree(dir: modelPath, include: ['**/*_DM.json', '**/*_CDM.json'])
-        if (!documentModels || documentModels.isEmpty()) {
-            throw new org.gradle.api.GradleException("No converted document models found in ${modelPath}")
+        def convertedFiles = fileTree(dir: modelPath).files
+        def documentModels = convertedFiles.findAll { isDocumentModel(it) }
+
+        if (documentModels.isEmpty()) {
+            throw new GradleException("No converted document models found in ${modelPath}")
         }
         def argsList = []
         argsList += ['--document-model-file', documentModels.first().absolutePath]
@@ -137,8 +140,23 @@ springBoot {
     }
 }
 
-bootRun bootRunVar
-
 artifacts artifactsVar
 
 publishing publishingVar
+
+rewrite rewriteVar
+
+boolean isDocumentModel(File modelFile) {
+    return modelType(modelFile) == 'document'
+}
+
+private String modelType(File modelFile) {
+    if (!modelFile.name.endsWith('.json')) {
+        return null
+    }
+    try {
+        return new groovy.json.JsonSlurper().parse(modelFile)?.header?.modelType
+    } catch (Exception e) {
+        throw new GradleException("Could not read converted model ${modelFile}", e)
+    }
+}

@@ -51,7 +51,6 @@ export class TreePage extends OverviewPage {
                     .filter({ hasText: content })
             ).toBeVisible();
         }
-        return;
     }
 
     async assertNotExpandableRowTitles(documents: string[]) {

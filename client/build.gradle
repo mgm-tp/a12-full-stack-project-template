@@ -178,7 +178,8 @@ tasks.register("cyclonedxBomNpm", NpxTask) {
     group = "npm SBOM"
     description = "Generates an SBOM using @cyclonedx/cyclonedx-npm"
     command = "@cyclonedx/cyclonedx-npm"
-    args = ["--ignore-npm-errors", "--output-file", layout.buildDirectory.file("reports/cyclonedx.json").get().asFile.absolutePath]
+    // --package-lock-only builds the SBOM from package-lock.json instead of the installed node_modules tree.
+    args = ["--ignore-npm-errors", "--package-lock-only", "--output-file", layout.buildDirectory.file("reports/cyclonedx.json").get().asFile.absolutePath]
 }
 
 // the report cyclonedxBom will be correctly replaced by cyclonedxBomNpm result
