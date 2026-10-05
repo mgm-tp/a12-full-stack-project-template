@@ -62,10 +62,10 @@ dependencyResolutionManagement {
         }
 
         a12Libs {
-            version('base', '29.3.1')
-            version('kernel', '30.8.5')
-            version('uaa', '9.4.0')
-            version('dataservices', '38.4.3')
+            version('base', '29.3.2')
+            version('kernel', '30.8.6')
+            version('uaa', '9.4.1')
+            version('dataservices', '38.4.5')
 
             library('uaa-authorization-a12-extension', 'com.mgmtp.a12.uaa', 'uaa-authorization-a12-extension').versionRef('uaa')
             library('uaa-authorization-introspector', 'com.mgmtp.a12.uaa', 'uaa-authorization-introspector').versionRef('uaa')

@@ -1,7 +1,7 @@
 THIRD_PARTY_NOTICES
 
-Component: A12 Project Template with Workflows
-Generated: 2026-07-15 for mgm A12 Platform 2025.06-ext6
+Component: A12 Project Template
+Generated: 2026-09-10 for mgm A12 Platform 2025.06
 
 The mgm A12 Platform is developed by mgm technology partners GmbH.
 
@@ -16,83 +16,128 @@ Component Overview
 
 The following third-party components are included in this distribution:
 
-
-- clean-webpack-plugin 4.0.0, licensed under MIT
-	Copyright (c) 2015 John Agan
-	Source: https://github.com/johnagan/clean-webpack-plugin
-- @com.mgmtp.a12.base/base-model-api 29.3.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.base/base-model-api 29.3.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.client/client-core 16.2.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.client/client-core 16.2.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.client/client-data 16.2.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.client/client-data 16.2.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.contentengine/contentengine-core 0.11.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.contentengine/contentengine-core 0.11.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.contentengine/contentengine-default-element-library 0.11.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.contentengine/contentengine-default-element-library 0.11.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.crud/crud-core 2.3.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.crud/crud-core 2.3.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.dataservices/dataservices-access 38.4.3, licensed under EUPL v1.2
+- @com.mgmtp.a12.dataservices/dataservices-access 38.4.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
 - @com.mgmtp.a12.expression/expression-core 2.0.6, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.formengine/formengine-content-elements 38.4.2, licensed under EUPL v1.2
+- @com.mgmtp.a12.formengine/formengine-content-elements 38.4.3, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.formengine/formengine-core 38.4.2, licensed under EUPL v1.2
+- @com.mgmtp.a12.formengine/formengine-core 38.4.3, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.kernel/kernel-core-runtime-api-ts 30.8.5, licensed under EUPL v1.2
+- @com.mgmtp.a12.kernel/kernel-core-runtime-api-ts 30.8.6, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.kernel/kernel-md-facade 30.8.5, licensed under EUPL v1.2
+- @com.mgmtp.a12.kernel/kernel-md-facade 30.8.6, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
 - @com.mgmtp.a12.overviewengine/overviewengine-core 38.3.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.relationshipengine/relationshipengine-core 2.3.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.relationshipengine/relationshipengine-core 2.3.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.treeengine/treeengine-core 10.3.1, licensed under EUPL v1.2
+- @com.mgmtp.a12.treeengine/treeengine-core 10.3.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.uaa/uaa-authentication-a12-client 9.4.0, licensed under EUPL v1.2
+- @com.mgmtp.a12.uaa/uaa-authentication-a12-client 9.4.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
 - @com.mgmtp.a12.utils/utils-collections 6.2.0, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-connector 8.2.3, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-connector 8.2.4, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-localization 7.2.0, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-localization 7.2.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-localization-react 7.2.0, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-localization-react 7.2.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.utils/utils-logging 6.2.0, licensed under EUPL v1.2
+- @com.mgmtp.a12.utils/utils-logging 6.2.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- @com.mgmtp.a12.widgets/widgets-core 38.3.5, licensed under EUPL v1.2
+- @com.mgmtp.a12.widgets/widgets-core 38.3.6, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
+- @eslint/compat 1.4.0, licensed under Apache-2.0
+	Source: https://github.com/eslint/rewrite/tree/main/packages/compat
+- @eslint/compat 1.4.1, licensed under Apache-2.0
+	Source: https://github.com/eslint/rewrite/tree/main/packages/compat
+- @jambit/eslint-plugin-typed-redux-saga 0.4.0, licensed under MIT
+	Copyright (c) 2020 Jambit GmbH
+	Source: https://github.com/jambit/eslint-plugin-typed-redux-saga
+- @playwright/test 1.58.2, licensed under Apache-2.0
+	Copyright (c) Microsoft Corporation
+	Source: https://github.com/microsoft/playwright
+- @pmmmwh/react-refresh-webpack-plugin 0.6.2, licensed under MIT
+	Copyright (c) 2019 Michael Mok
+	Source: https://github.com/pmmmwh/react-refresh-webpack-plugin
+- @redux-devtools/extension 3.2.2, licensed under MIT
+	Copyright (c) 2015-present Dan Abramov
+	Source: https://github.com/reduxjs/redux-devtools
+- @types/node 24.10.13, licensed under MIT
+	Copyrights are respective of each contributor listed at the beginning of each definition file.
+	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
+- @types/react 19.0.10, licensed under MIT
+	Copyrights are respective of each contributor listed at the beginning of each definition file.
+	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
+- @types/react-dom 19.0.4, licensed under MIT
+	Copyrights are respective of each contributor listed at the beginning of each definition file
+	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
+- @types/react-redux 7.1.34, licensed under MIT
+	Copyrights are respective of each contributor listed at the beginning of each definition file
+	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
+- @types/react-transition-group 4.4.12, licensed under MIT
+	Copyrights are respective of each contributor listed at the beginning of each definition file
+	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
+- @types/webpack-env 1.18.8, licensed under MIT
+	Copyrights are respective of each contributor listed at the beginning of each definition file
+	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
+- @typescript-eslint/eslint-plugin 8.46.1, licensed under MIT
+	Copyright (c) 2019 typescript-eslint and other contributors
+	Source: https://github.com/typescript-eslint/typescript-eslint
+- @typescript-eslint/eslint-plugin 8.56.1, licensed under MIT
+	Copyright (c) 2019 typescript-eslint and other contributors
+	Source: https://github.com/typescript-eslint/typescript-eslint
+- @typescript-eslint/parser 8.46.1, licensed under MIT
+	Copyright (c) 2019 typescript-eslint and other contributors
+	Source: https://github.com/typescript-eslint/typescript-eslint
+- @typescript-eslint/parser 8.56.1, licensed under MIT
+	Copyright (c) 2019 typescript-eslint and other contributors
+	Source: https://github.com/typescript-eslint/typescript-eslint
+- clean-webpack-plugin 4.0.0, licensed under MIT
+	Copyright (c) 2015 John Agan
+	Source: https://github.com/johnagan/clean-webpack-plugin
 - copy-webpack-plugin 10.2.4, licensed under MIT
 	Copyright JS Foundation and other contributors
 	Source: https://github.com/webpack-contrib/copy-webpack-plugin
-- cross-env 10.1.0, licensed under MIT
+- cross-env 7.0.3, licensed under MIT
 	Copyright (c) 2017 Kent C. Dodds
 	Source: https://github.com/kentcdodds/cross-env
-- cross-env 7.0.3, licensed under MIT
+- cross-env 10.1.0, licensed under MIT
 	Copyright (c) 2017 Kent C. Dodds
 	Source: https://github.com/kentcdodds/cross-env
 - css-loader 6.11.0, licensed under MIT
@@ -107,10 +152,6 @@ The following third-party components are included in this distribution:
 - eslint 9.39.3, licensed under MIT
 	Copyright OpenJS Foundation and other contributors, <www.openjsf.org>
 	Source: https://github.com/eslint/eslint
-- @eslint/compat 1.4.0, licensed under Apache-2.0
-	Source: https://github.com/eslint/rewrite/tree/main/packages/compat
-- @eslint/compat 1.4.1, licensed under Apache-2.0
-	Source: https://github.com/eslint/rewrite/tree/main/packages/compat
 - eslint-config-prettier 10.1.8, licensed under MIT
 	Copyright (c) 2017, 2018, 2019, 2020, 2021, 2022, 2023 Simon Lydell and contributors
 	Source: https://github.com/prettier/eslint-config-prettier
@@ -129,15 +170,12 @@ The following third-party components are included in this distribution:
 - html-webpack-plugin 5.6.4, licensed under MIT
 	Copyright JS Foundation and other contributors
 	Source: https://github.com/jantimon/html-webpack-plugin
-- @jambit/eslint-plugin-typed-redux-saga 0.4.0, licensed under MIT
-	Copyright (c) 2020 Jambit GmbH
-	Source: https://github.com/jambit/eslint-plugin-typed-redux-saga
 - kill-port 2.0.1, licensed under MIT
 	Copyright (c) Tiaan du Plessis
 	Source: https://github.com/tiaanduplessis/kill-port
 - mini-css-extract-plugin 2.9.4, licensed under MIT
 	Copyright JS Foundation and other contributors
-	Source: https://github.com/webpack-contrib/mini-css-extract-plugin
+	Source: https://github.com/webpack/mini-css-extract-plugin
 - moment-timezone 0.6.0, licensed under MIT
 	Copyright (c) JS Foundation and other contributors
 	Source: https://github.com/moment/moment-timezone
@@ -145,14 +183,8 @@ The following third-party components are included in this distribution:
 	Copyright (c) 2015 Toru Nagashima
 	Source: https://github.com/mysticatea/npm-run-all
 - oidc-client-ts 2.4.1, licensed under Apache-2.0
-	Copyright 2018, Brock Allen, Dominick Baier
+	Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 	Source: https://github.com/authts/oidc-client-ts
-- @playwright/test 1.58.2, licensed under Apache-2.0
-	Copyright (c) Microsoft Corporation
-	Source: https://github.com/microsoft/playwright
-- @pmmmwh/react-refresh-webpack-plugin 0.6.2, licensed under MIT
-	Copyright (c) 2019 Michael Mok
-	Source: https://github.com/pmmmwh/react-refresh-webpack-plugin
 - prettier 3.8.1, licensed under MIT
 	Copyright © James Long and contributors
 	Source: https://github.com/prettier/prettier
@@ -179,9 +211,6 @@ The following third-party components are included in this distribution:
 - redux 4.2.1, licensed under MIT
 	Copyright (c) 2015-present Dan Abramov
 	Source: https://github.com/reduxjs/redux
-- @redux-devtools/extension 3.2.2, licensed under MIT
-	Copyright (c) 2015-present Dan Abramov
-	Source: https://github.com/reduxjs/redux-devtools
 - redux-saga 1.3.0, licensed under MIT
 	Copyright (c) Redux-Saga team and other contributors
 	Source: https://github.com/redux-saga/redux-saga
@@ -206,45 +235,15 @@ The following third-party components are included in this distribution:
 - typed-redux-saga 1.5.0, licensed under MIT
 	Copyright (c) 2019 Agile Digital
 	Source: https://github.com/agiledigital/typed-redux-saga
-- typescript 5.3.3, licensed under Apache-2.0
-	Copyright (c) Microsoft Corporation
-	Source: https://github.com/Microsoft/TypeScript
 - typescript 5.8.2, licensed under Apache-2.0
 	Copyright (c) Microsoft Corporation
 	Source: https://github.com/microsoft/TypeScript
-- @typescript-eslint/eslint-plugin 8.46.1, licensed under MIT
-	Copyright (c) 2019 typescript-eslint and other contributors
-	Source: https://github.com/typescript-eslint/typescript-eslint
-- @typescript-eslint/eslint-plugin 8.56.1, licensed under MIT
-	Copyright (c) 2019 typescript-eslint and other contributors
-	Source: https://github.com/typescript-eslint/typescript-eslint
-- @typescript-eslint/parser 8.46.1, licensed under MIT
-	Copyright (c) 2019 typescript-eslint and other contributors
-	Source: https://github.com/typescript-eslint/typescript-eslint
-- @typescript-eslint/parser 8.56.1, licensed under MIT
-	Copyright (c) 2019 typescript-eslint and other contributors
-	Source: https://github.com/typescript-eslint/typescript-eslint
+- typescript 5.3.3, licensed under Apache-2.0
+	Copyright (c) Microsoft Corporation
+	Source: https://github.com/microsoft/TypeScript
 - typescript-fsa 3.0.0, licensed under MIT
 	Copyright (c) 2016 Daniel Lytkin
 	Source: https://github.com/aikoven/typescript-fsa
-- @types/node 24.10.13, licensed under MIT
-	Copyright Node.js contributors
-	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
-- @types/react 19.0.10, licensed under MIT
-	Copyrights are respective of each contributor listed at the beginning of each definition file
-	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
-- @types/react-dom 19.0.4, licensed under MIT
-	Copyrights are respective of each contributor listed at the beginning of each definition file
-	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
-- @types/react-redux 7.1.34, licensed under MIT
-	Copyrights are respective of each contributor listed at the beginning of each definition file
-	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
-- @types/react-transition-group 4.4.12, licensed under MIT
-	Copyrights are respective of each contributor listed at the beginning of each definition file
-	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
-- @types/webpack-env 1.18.8, licensed under MIT
-	Copyrights are respective of each contributor listed at the beginning of each definition file
-	Source: https://github.com/DefinitelyTyped/DefinitelyTyped
 - webpack 5.94.0, licensed under MIT
 	Copyright JS Foundation and other contributors
 	Source: https://github.com/webpack/webpack
@@ -257,62 +256,52 @@ The following third-party components are included in this distribution:
 - webpack-merge 5.10.0, licensed under MIT
 	Copyright (c) 2015 Juho Vepsalainen
 	Source: https://github.com/survivejs/webpack-merge
-
-- org.springframework.boot/spring-boot-configuration-processor 3.5.9, licensed under Apache-2.0
-	Copyright (c) 2012-2026 VMware, Inc.
-	Source: https://github.com/spring-projects/spring-boot
-- com.puppycrawl.tools/checkstyle 10.15.0, licensed under LGPL-2.1-or-later
-	Copyright (c) 2001-2024 Checkstyle contributors
-	Source: https://checkstyle.org/
-- com.mgmtp.a12.dataservices/dataservices-server-app 38.4.3, licensed under EUPL v1.2
+- ch.qos.logback/logback-classic 1.5.34, licensed under EPL-2.0
+	Copyright (C) 1999-2024, QOS.ch
+	Source: https://github.com/qos-ch/logback/
+- com.mgmtp.a12.base/base-bom 29.3.2, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-data-seed 38.4.3, licensed under EUPL v1.2
+- com.mgmtp.a12.dataservices/dataservices-data-seed 38.4.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.uaa/uaa-authorization-a12-extension 9.4.0, licensed under EUPL v1.2
+- com.mgmtp.a12.dataservices/dataservices-parent 38.4.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.uaa/uaa-authorization-introspector 9.4.0, licensed under EUPL v1.2
+- com.mgmtp.a12.dataservices/dataservices-server-app 38.4.5, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-parent 38.4.3, licensed under EUPL v1.2
+- com.mgmtp.a12.dataservices/dataservices-server-init-app 38.4.5, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.kernel/kernel-bom 30.8.6, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.kernel/kernel-md-facade 30.8.6, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.kernel/kernel-md-util 30.8.6, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.uaa/uaa-authorization-a12-extension 9.4.1, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.uaa/uaa-authorization-introspector 9.4.1, licensed under EUPL v1.2
+	Copyright (C) 2012-2026 mgm technology partners GmbH
+	Source: https://github.com/mgm-tp
+- com.mgmtp.a12.uaa/uaa-bom 9.4.1, licensed under EUPL v1.2
 	Copyright (C) 2012-2026 mgm technology partners GmbH
 	Source: https://github.com/mgm-tp
 - net.logstash.logback/logstash-logback-encoder 7.4, licensed under Apache-2.0
 	Copyright 2013-2025 the original author or authors.
 	Source: https://github.com/logfellow/logstash-logback-encoder
-- com.mgmtp.a12.kernel/kernel-md-util 30.8.5, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
 - org.springframework.boot/spring-boot-devtools 3.5.9, licensed under Apache-2.0
-	Copyright (c) 2012-2026 VMware, Inc.
+	Copyright 2012-present the original author or authors.
 	Source: https://github.com/spring-projects/spring-boot
-- com.mgmtp.a12.kernel/kernel-md-document-v2 30.8.5, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.base/base-bom 29.3.1, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-bom 30.8.5, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.uaa/uaa-bom 9.4.0, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- ch.qos.logback/logback-classic 1.5.6, licensed under EPL-1.0
-	Copyright (C) 1999-2024, QOS.ch
-	Source: https://github.com/qos-ch/logback/
-- com.mgmtp.a12.kernel/kernel-md-facade 30.8.5, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.kernel/kernel-md-typed-accessor-gen 30.8.5, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
-- com.mgmtp.a12.dataservices/dataservices-server-init-app 38.4.3, licensed under EUPL v1.2
-	Copyright (C) 2012-2026 mgm technology partners GmbH
-	Source: https://github.com/mgm-tp
 
+
+Embedded NOTICE Files
+---------------------
 
 NOTICE file of playwright
 ---------------------------
@@ -353,3 +342,4 @@ respective licenses. For details, see the file LICENSE.
 owners.
 
 End of THIRD_PARTY_NOTICES
+

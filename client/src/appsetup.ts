@@ -105,6 +105,9 @@ export function setup() {
             config: {
                 applyTriggers: [ModelActions.addModulesApplicationModels]
             }
+        },
+        contentEngine: {
+            elementLibraryId: DefaultElementLibrary.get().id
         }
     };
 
@@ -115,7 +118,7 @@ export function setup() {
         withOverviewEngine,
         withRelationshipFormEngine,
         withCRUD,
-        withContentEngine(DefaultElementLibrary.get().id),
+        withContentEngine,
         withPlatformModelLoader
     );
 
