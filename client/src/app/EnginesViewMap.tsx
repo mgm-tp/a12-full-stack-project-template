@@ -49,7 +49,7 @@ export const enginesViewMap = {
         return <TreeEngineFactories.ViewComponent {...props} />;
     },
     FormEngine(props) {
-        return <CRUDViews.FormEngineWithRelationshipEngineView {...props} />;
+        return <CRUDViews.FormEngineView {...props} />;
     },
     OverviewEngine(props) {
         return <CRUDViews.OverviewEngineView {...props} />;

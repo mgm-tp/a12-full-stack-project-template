@@ -82,6 +82,9 @@ dependencies {
     implementation a12Libs.uaa.authorization.a12.extension
     implementation a12Libs.uaa.authorization.introspector
 
+    // A12 Print
+    implementation a12Libs.print
+
     // Native BOMs
     implementation(platform(a12Libs.base.bom))
     implementation(platform(a12Libs.kernel.bom))

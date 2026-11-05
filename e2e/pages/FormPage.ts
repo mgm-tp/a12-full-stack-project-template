@@ -34,7 +34,7 @@ import type { Locator } from "@playwright/test";
 
 import { DataType, type FieldTestData, type FileTestData, type TestData } from "../types";
 import { TestID } from "../types/testIds";
-import { API_PATH, waitForApiReponse } from "../utils/api";
+import { API_PATH, HTTP_STATUS, waitForApiReponse } from "../utils/api";
 import { type Page, expect } from "../fixtures";
 import { getByLabelWithOptionalAsterisk } from "../utils/locators";
 
@@ -194,30 +194,32 @@ export class FormPage extends BasePage {
     }
 
     async uploadFileField(testData: FileTestData) {
-        const { locator: fieldControlLocator, filePath } = testData;
-        await this.form
-            .locator(`${fieldControlLocator} [data-role=${TestID.FILE_UPLOAD_INPUT}]`)
-            .setInputFiles(filePath);
-        await waitForApiReponse({
-            page: this.page,
-            apiPath: API_PATH.ATTACHMENT,
-            expectedStatusCode: 200
-        });
+        await this.setFileFieldInput(testData, HTTP_STATUS.OK);
         await expect(
-            this.form.locator(`${fieldControlLocator} [data-role=${TestID.FILE_UPLOAD_CONTENT_INNER}] img`)
+            this.form.locator(`${testData.locator} [data-role=${TestID.FILE_UPLOAD_CONTENT_INNER}] img`)
         ).toBeVisible();
     }
 
+    /** Uploads a file the server rejects. */
     async uploadInvalidFileField(testData: FileTestData, expectedErrorMessage: string | RegExp) {
-        const { locator: fieldControlLocator, filePath } = testData;
-        await this.form
-            .locator(`${fieldControlLocator} [data-role=${TestID.FILE_UPLOAD_INPUT}]`)
-            .setInputFiles(filePath);
-        await waitForApiReponse({
+        await this.setFileFieldInput(testData, HTTP_STATUS.BAD_REQUEST);
+        await expect(this.form.getByTestId(TestID.FILE_UPLOAD_ERROR_MESSAGE)).toHaveText(expectedErrorMessage);
+    }
+
+    /** Uploads a file the server accepts, but the Document Model rule of the attachment field rejects. */
+    async uploadDisallowedFileField(testData: FileTestData, expectedValidationMessage: string | RegExp) {
+        await this.setFileFieldInput(testData, HTTP_STATUS.OK);
+        await expect(this.form.getByText(expectedValidationMessage)).toBeVisible();
+    }
+
+    /** Selects the file and waits for the attachment upload to respond with the expected status. */
+    private async setFileFieldInput({ locator, filePath }: FileTestData, expectedStatusCode: HTTP_STATUS) {
+        const uploadResponse = waitForApiReponse({
             page: this.page,
             apiPath: API_PATH.ATTACHMENT,
-            expectedStatusCode: 400
+            expectedStatusCode
         });
-        await expect(this.form.getByTestId(TestID.FILE_UPLOAD_ERROR_MESSAGE)).toHaveText(expectedErrorMessage);
+        await this.form.locator(`${locator} [data-role=${TestID.FILE_UPLOAD_INPUT}]`).setInputFiles(filePath);
+        await uploadResponse;
     }
 }

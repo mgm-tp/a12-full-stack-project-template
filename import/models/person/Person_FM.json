@@ -2,7 +2,7 @@
   "header": {
     "id": "Person_Fm",
     "modelType": "form",
-    "modelVersion": "39.0.0",
+    "modelVersion": "39.3.0",
     "locales": [
       {
         "code": "en"
@@ -107,6 +107,41 @@
       },
       "majorButtons": {
         "button": [
+          {
+            "type": "EVENT",
+            "id": "button_ebcdb",
+            "name": "Print",
+            "buttonStyling": {
+              "label": {
+                "type": "Multilingual",
+                "multilingualText": {
+                  "text": [
+                    {
+                      "locale": "en",
+                      "text": "Print"
+                    },
+                    {
+                      "locale": "de",
+                      "text": "Drucken"
+                    }
+                  ]
+                }
+              },
+              "icon": {
+                "name": "print",
+                "theme": "filled"
+              }
+            },
+            "event": "event_print",
+            "validation": "full",
+            "scope": "HIDDEN_IN_READONLY_MODE",
+            "annotations": [
+              {
+                "name": "print_model",
+                "value": "Person_Pt"
+              }
+            ]
+          },
           {
             "type": "EVENT",
             "id": "button-0bc48",
@@ -406,6 +441,9 @@
                 }
               ]
             }
+          },
+          "attachmentConfig": {
+            "accept": "image/png,image/jpeg"
           },
           "elementRef": "group_05909"
         }

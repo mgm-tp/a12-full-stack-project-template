@@ -35,7 +35,7 @@ import type { Locator } from "@playwright/test";
 import { TestID } from "../types/testIds";
 import type { TestData } from "../types";
 import { type Page, expect } from "../fixtures";
-import { API_PATH, waitForApiReponse } from "../utils/api";
+import { API_PATH, HTTP_STATUS, waitForApiReponse } from "../utils/api";
 
 import { BasePage } from "./BasePage";
 import { FormPage } from "./FormPage";
@@ -70,20 +70,13 @@ export class OverviewPage extends BasePage {
     async addComposeDocument(
         document: TestData[],
         relationData: TestData[] = [],
-        additionalFieldsData?: TestData[],
         formLocator?: Locator,
-        relationFormLocator?: Locator,
-        additionalFieldsFormLocator?: Locator
+        relationFormLocator?: Locator
     ) {
         await this.page.getByRole("button", { name: "Add" }).click();
-        const composeFormPage = new ComposeFormPage(
-            this.page,
-            formLocator,
-            relationFormLocator,
-            additionalFieldsFormLocator
-        );
+        const composeFormPage = new ComposeFormPage(this.page, formLocator, relationFormLocator);
         await composeFormPage.toBeVisible();
-        await composeFormPage.createDocument(document, relationData, additionalFieldsData);
+        await composeFormPage.createDocument(document, relationData);
         await this.assertDocumentsInTable([document[0]!.value]);
     }
 
@@ -95,20 +88,24 @@ export class OverviewPage extends BasePage {
 
     async deleteRow(row: Locator, hasConfirmation: boolean = true) {
         await expect(row).toBeVisible();
+        const waitForResponses = async () => {
+            await waitForApiReponse({
+                page: this.page,
+                apiPath: API_PATH.RPC,
+                expectedStatusCode: HTTP_STATUS.OK
+            });
+            await waitForApiReponse({
+                page: this.page,
+                apiPath: API_PATH.RPC,
+                expectedStatusCode: HTTP_STATUS.OK
+            });
+        };
+        const responses = waitForResponses();
         await row.getByRole("button").filter({ hasText: "delete" }).click();
         if (hasConfirmation) {
             await this.page.getByRole("button", { name: "Delete" }).click();
         }
-        await waitForApiReponse({
-            page: this.page,
-            apiPath: API_PATH.RPC,
-            expectedStatusCode: 200
-        });
-        await waitForApiReponse({
-            page: this.page,
-            apiPath: API_PATH.RPC,
-            expectedStatusCode: 200
-        });
+        await responses;
     }
 
     async deleteAllRows(hasConfirmation: boolean = true) {
@@ -137,7 +134,7 @@ export class OverviewPage extends BasePage {
         await waitForApiReponse({
             page: this.page,
             apiPath: API_PATH.RPC,
-            expectedStatusCode: 200
+            expectedStatusCode: HTTP_STATUS.OK
         });
         const downloadFile = await downloadedFilePromise;
         expect(downloadFile.suggestedFilename()).toBe(expectedFileName);

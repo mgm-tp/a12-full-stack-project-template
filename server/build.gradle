@@ -102,10 +102,10 @@ subprojects {
         }
 
         from "$baseImage as builder"
-        workingDir "extracted"
+        workingDir "builder"
         arg "JAR_FILE=libs/${project.name}-${project.version}.jar"
         copyFile "\${JAR_FILE}", "application.jar"
-        runCommand "java -Djarmode=layertools -jar application.jar extract"
+        runCommand "java -Djarmode=tools -jar application.jar extract --layers --launcher --destination extracted"
 
         from baseImage
         label(imageLabels)
@@ -116,10 +116,10 @@ subprojects {
             "chown -R a12:a12 /var/lib/a12;"
         user "a12"
         workingDir "/var/lib/a12/application"
-        copyFile "--from=builder extracted/dependencies/", "./"
-        copyFile "--from=builder extracted/spring-boot-loader/", "./"
-        copyFile "--from=builder extracted/snapshot-dependencies/", "./"
-        copyFile "--from=builder extracted/application/", "./"
+        copyFile "--from=builder builder/extracted/dependencies/", "./"
+        copyFile "--from=builder builder/extracted/spring-boot-loader/", "./"
+        copyFile "--from=builder builder/extracted/snapshot-dependencies/", "./"
+        copyFile "--from=builder builder/extracted/application/", "./"
         entryPoint "java", "org.springframework.boot.loader.launch.JarLauncher", "\$JAVA_OPTS"
     }
 
@@ -138,6 +138,10 @@ subprojects {
         group 'docker'
         dependsOn buildImages, ':import:publish'
         images.add(calculateFullTag(serviceName))
+        if (dockerUseCredentials.toBoolean()) {
+            // The shared 'docker' extension ends up with the read registry credentials, so bind the publish ones here
+            registryCredentials registryCredentialsForPublishVar
+        }
     }
 
 

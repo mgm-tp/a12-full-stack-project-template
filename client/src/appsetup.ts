@@ -46,11 +46,8 @@ import { withPlatformModelLoader } from "@com.mgmtp.a12.client/client-core/model
 import { withDirtyHandling } from "@com.mgmtp.a12.client/client-core/dirtyHandling";
 import { withLocalization } from "@com.mgmtp.a12.client/client-core/localization";
 import { withNotifications } from "@com.mgmtp.a12.client/client-core/notification";
-import { withFormEngine } from "@com.mgmtp.a12.formengine/formengine-core";
-import {
-    withRelationshipEngine,
-    RelationshipEngineFactories
-} from "@com.mgmtp.a12.relationshipengine/relationshipengine-core";
+import { platformAttachmentLoader } from "@com.mgmtp.a12.formengine/formengine-core";
+import { withRelationshipFormEngine } from "@com.mgmtp.a12.relationshipengine/relationshipengine-core";
 import { withOverviewEngine } from "@com.mgmtp.a12.overviewengine/overviewengine-core";
 import { withTreeEngine } from "@com.mgmtp.a12.treeengine/treeengine-core";
 import { withCRUD } from "@com.mgmtp.a12.crud/crud-core";
@@ -59,6 +56,7 @@ import { withDataServicesConfiguration } from "@com.mgmtp.a12.client/client-core
 import { withContentEngine } from "@com.mgmtp.a12.contentengine/contentengine-core";
 import { DefaultElementLibrary } from "@com.mgmtp.a12.contentengine/contentengine-default-element-library";
 import { withUaa } from "@com.mgmtp.a12.uaa/uaa-authentication-a12-client";
+import { withPrint } from "@com.mgmtp.a12.print/print-integration";
 
 import { registerModulesOnSetModelGraphMiddleware, unregisterModulesOnLogoutMiddleware } from "./modules";
 import { isProduction } from "./config";
@@ -75,8 +73,14 @@ export function setup() {
             preComputeNewDocuments: true,
             composeEnhancer: isProduction ? undefined : enableReduxDevTools()
         },
+        print: {
+            showLoadingIndicatorDuringPrint: true,
+            validateAndSaveBeforePrint: true
+        },
         formEngine: {
-            sagas: RelationshipEngineFactories.createFormEngineSagaOptions()
+            sagas: {
+                attachmentLoader: platformAttachmentLoader
+            }
         },
         localization: {
             supportedLocales,
@@ -104,18 +108,26 @@ export function setup() {
     const configured = combineFeatures(
         combineFeatures(
             // * Update after A12C-3313 is done
-            withModel(APPLICATION_MODEL_PLACEHOLDER),
+            // Non-generic first step: a generic one leaves the feature guards (RequireFeatures) unresolved
+            (cfg: A12ApplicationConfig) => withModel(APPLICATION_MODEL_PLACEHOLDER)(cfg),
             withDataServicesConfiguration,
-            withFormEngine,
             withOverviewEngine,
-            withRelationshipEngine,
+            withRelationshipFormEngine,
             withCRUD,
             withTreeEngine,
             withContentEngine,
             withPlatformModelLoader
         ),
 
-        combineFeatures(withLocalization, withNotifications, withUaa, withKeycloak, withDirtyHandling, withDeepLinking),
+        combineFeatures(
+            withPrint,
+            withLocalization,
+            withNotifications,
+            withUaa,
+            withKeycloak,
+            withDirtyHandling,
+            withDeepLinking
+        ),
 
         combineFeatures(
             addView("TreeEngine", enginesViewMap.TreeEngine),

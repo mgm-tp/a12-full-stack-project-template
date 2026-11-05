@@ -33,6 +33,7 @@
 export enum TestID {
     APPLICATION_HEADER = "application-header",
     BUTTON = "button",
+    BUTTON_GROUP_CONTAINER = "button-group-container",
     CONTENTBOX = "contentbox",
     CONTENTBOX_GROUP_ACTION_BAR = "contentbox-group-action-bar",
     CONTENTBOX_SUBHEADING = "contentbox-subheading",
@@ -67,7 +68,9 @@ export enum TestID {
     TREE_NODE_EXPANDER = "tree-node-expander",
     TREE_NODE_NAME = "tree-node-name",
     TREE_NODE_TITLE = "tree-node-title",
-    TYPOGRAPHY_SECTION = "typography-section"
+    TYPOGRAPHY_SECTION = "typography-section",
+    VALIDATION_BAR = "validation-bar",
+    VALIDATION_BAR_PRIMARY_TITLE = "validation-bar-primary-title"
 }
 
 export enum CustomDataTestID {

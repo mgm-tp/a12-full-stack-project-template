@@ -77,3 +77,24 @@ export type StorageState =
               }>;
           }>;
       };
+
+export interface RpcRequest {
+    method?: string;
+    params?: { printModelId?: string; docRef?: string; locale?: string };
+}
+
+export interface RpcResponse {
+    result?: string;
+    error?: unknown;
+}
+
+export interface ObservedRpcCall {
+    methods: string[];
+    request: RpcRequest[];
+    response: RpcResponse[];
+}
+
+export interface RpcObserver {
+    observedMethods: () => string[];
+    waitForCall: (methods: string[], timeout?: number) => Promise<ObservedRpcCall>;
+}

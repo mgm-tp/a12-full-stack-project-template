@@ -71,6 +71,7 @@ def FILE_PATTERNS = [
 def EXCLUDE_PATTERNS = [
     '**/node_modules/**',
     '**/build/**',
+    '**/bin/**',
     '.idea',
     '.run',
     'copyright/copyright-template.md',

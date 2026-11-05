@@ -37,6 +37,14 @@ import { DataType, type FieldTestData, type FileTestData, type TestData, type Te
 import { TestID } from "../../types/testIds";
 import { OverviewPage } from "../../pages/OverviewPage";
 import { FormPage } from "../../pages/FormPage";
+import {
+    assertApplicationBusy,
+    assertApplicationNotBusy,
+    assertPrintedDocument,
+    assertSavedBeforePrint,
+    observeRpc,
+    stubWindowOpen
+} from "../../utils/print";
 
 const personData: TestData[] = [
     { label: "First Name", value: "Paddington", type: DataType.String },
@@ -49,6 +57,19 @@ const personData: TestData[] = [
     { label: "Date of Birth", value: "10/13/1958", type: DataType.String },
     { label: "Place of Birth", value: "Darkest Peru", type: DataType.String },
     { label: "Nationality", value: "British", type: DataType.String },
+    { label: "Gender", value: "MALE", type: DataType.Select }
+];
+const printPersonData: TestData[] = [
+    { label: "First Name", value: "PrintFirstName", type: DataType.String },
+    { label: "Last Name", value: "PrintLastName", type: DataType.String },
+    {
+        label: "Email Address",
+        value: "print@mgm-tp.com",
+        type: DataType.String
+    },
+    { label: "Date of Birth", value: "01/01/2020", type: DataType.String },
+    { label: "Place of Birth", value: "Somewhere", type: DataType.String },
+    { label: "Nationality", value: "German", type: DataType.String },
     { label: "Gender", value: "MALE", type: DataType.Select }
 ];
 const ownershipTestData: Record<TestUsername, TestData[]> = {
@@ -120,7 +141,18 @@ const invalidAttachmentData: FileTestData = {
     type: DataType.File
 };
 
+const disallowedPhotoData: FileTestData = {
+    locator: `[data-role=${TestID.FILE_UPLOAD_CONTROL}]`,
+    filePath: fileURLToPath(new URL("../../fixtures/A12-Logo.pdf", import.meta.url)),
+    value: "A12-Logo.pdf",
+    type: DataType.File
+};
+
+const PERSON_PRINT_MODEL = "Person_Pt";
+
 const INVALID_ATTACHMENT_ERROR = /Invalid MIME type\.$/;
+
+const DISALLOWED_PHOTO_ERROR = "Only PNG or JPEG images are allowed.";
 
 const phoneNumberData: FieldTestData[][] = [
     [{ label: "Phone Number", value: "123456789", type: DataType.String }],
@@ -185,6 +217,23 @@ test.describe.serial("Person Module", () => {
             await formPage.cancelForm();
         });
 
+        test("should reject a PDF as profile picture", async () => {
+            const row = overviewPage.getRow(personData[0]!.value);
+            await row.click();
+
+            await formPage.toBeVisible();
+            await formPage.uploadDisallowedFileField(disallowedPhotoData, DISALLOWED_PHOTO_ERROR);
+
+            await formPage.saveForm(false);
+            const validationBar = page.getByTestId(TestID.VALIDATION_BAR);
+            await expect(validationBar).toBeVisible();
+            await expect(validationBar.getByTestId(TestID.VALIDATION_BAR_PRIMARY_TITLE)).toContainText(
+                DISALLOWED_PHOTO_ERROR
+            );
+
+            await formPage.cancelForm();
+        });
+
         test("should add profile picture for person", async () => {
             const row = overviewPage.getRow(personData[0]!.value);
             await row.click();
@@ -239,6 +288,109 @@ test.describe.serial("Person Module", () => {
 
         test("should delete a person", async () => {
             const row = overviewPage.getRow(newDateOfBirth);
+            await overviewPage.deleteRow(row);
+            await expect(row).toBeHidden();
+        });
+    });
+
+    test.describe("Person Module - Print Document", () => {
+        let page: Page;
+        let overviewPage: OverviewPage;
+        let formPage: FormPage;
+
+        test.beforeEach(async ({ getPageAs }) => {
+            page = await getPageAs("admin");
+            overviewPage = new OverviewPage(page);
+            formPage = new FormPage(page);
+            await overviewPage.gotoHome();
+            await overviewPage.switchOnEnglish();
+            await overviewPage.clickMenuItem("Person");
+        });
+
+        test("should create a new person", async () => {
+            await overviewPage.addDocument(printPersonData);
+        });
+
+        test("should print a person from the form model button", async () => {
+            const row = overviewPage.getRow(printPersonData[0]!.value);
+            await row.click();
+            await formPage.toBeVisible();
+
+            const observer = await observeRpc(page, { delayPrintRequest: true });
+            await stubWindowOpen(page);
+
+            await page
+                .getByTestId(TestID.BUTTON_GROUP_CONTAINER)
+                .getByRole("button", { name: "Print", disabled: false })
+                .click();
+
+            await assertApplicationBusy(page);
+            await assertPrintedDocument(page, observer, PERSON_PRINT_MODEL);
+            await assertApplicationNotBusy(page);
+        });
+
+        test("should print a person from the overview model row action", async () => {
+            const row = overviewPage.getRow(printPersonData[0]!.value);
+            await expect(row).toBeVisible();
+
+            const observer = await observeRpc(page, { delayPrintRequest: true });
+            await stubWindowOpen(page);
+
+            await row.hover();
+            await row.getByRole("button").filter({ hasText: "print" }).click();
+
+            await assertApplicationBusy(page);
+            await assertPrintedDocument(page, observer, PERSON_PRINT_MODEL);
+            await assertApplicationNotBusy(page);
+        });
+
+        test("should validate and save the form before printing a changed person", async () => {
+            const changedAdress = `test-${Date.now()}@mgm-tp.com`;
+
+            const row = overviewPage.getRow(printPersonData[0]!.value);
+            await row.click();
+            await formPage.toBeVisible();
+            await formPage.inputFieldValue({ label: "Email Address", value: changedAdress, type: DataType.String });
+
+            const observer = await observeRpc(page);
+            await stubWindowOpen(page);
+
+            await page
+                .getByTestId(TestID.BUTTON_GROUP_CONTAINER)
+                .getByRole("button", { name: "Print", disabled: false })
+                .click();
+
+            await assertPrintedDocument(page, observer, PERSON_PRINT_MODEL);
+            await assertSavedBeforePrint(observer, changedAdress);
+            await assertApplicationNotBusy(page);
+
+            await overviewPage.gotoHome();
+            await overviewPage.clickMenuItem("Person");
+            await overviewPage.getRow(printPersonData[0]!.value).click();
+            await formPage.toBeVisible();
+            await formPage.assertFieldValue({ label: "Email Address", value: changedAdress, type: DataType.String });
+        });
+
+        test("should print a person with an attachment field", async () => {
+            const row = overviewPage.getRow(printPersonData[0]!.value);
+            await row.click();
+            await formPage.toBeVisible();
+            await formPage.uploadFileField(profileData);
+
+            const observer = await observeRpc(page);
+            await stubWindowOpen(page);
+
+            await page
+                .getByTestId(TestID.BUTTON_GROUP_CONTAINER)
+                .getByRole("button", { name: "Print", disabled: false })
+                .click();
+
+            await assertPrintedDocument(page, observer, PERSON_PRINT_MODEL);
+            await assertApplicationNotBusy(page);
+        });
+
+        test("should delete a person", async () => {
+            const row = overviewPage.getRow(printPersonData[0]!.value);
             await overviewPage.deleteRow(row);
             await expect(row).toBeHidden();
         });

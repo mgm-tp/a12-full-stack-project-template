@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "general": {
     "showMetaDataInUIModels": true,
-    "relationshipEngineMode": "new",
+    "relationshipEngineMode": "legacy",
     "locales": [
       {
         "code": "en"

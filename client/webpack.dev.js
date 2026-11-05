@@ -48,6 +48,7 @@ export default merge({}, common, {
     devtool: "eval-source-map",
     devServer: {
         hot: true,
+        host: process.env.DEV_SERVER_HOST || "127.0.0.1",
         port: Pkg.webpackPort,
         devMiddleware: {
             publicPath: ""

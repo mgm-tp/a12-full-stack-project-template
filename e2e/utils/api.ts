@@ -39,6 +39,11 @@ export enum API_PATH {
     REMINDERS = "/reminders"
 }
 
+export enum HTTP_STATUS {
+    OK = 200,
+    BAD_REQUEST = 400
+}
+
 export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 function apiUrlFromPage(page: Page, apiPath: string) {
@@ -54,7 +59,7 @@ export async function waitForApiReponse({
 }: {
     page: Page;
     apiPath: API_PATH;
-    expectedStatusCode: number;
+    expectedStatusCode: HTTP_STATUS;
     method?: HttpMethod;
 }): Promise<Response> {
     const urlPrefix = apiUrlFromPage(page, apiPath);

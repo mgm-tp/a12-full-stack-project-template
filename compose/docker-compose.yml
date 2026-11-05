@@ -35,10 +35,10 @@ services:
     image: ${FRONTEND_IMAGE}
     container_name: ${PROJECT_NAME}_frontend
     environment:
-      NGINX_PROJECT_TEMPLATE_SERVER_BASE_URL: http://server:8080/api
-      NGINX_PROJECT_TEMPLATE_SERVER_ACTUATOR_URL: http://server:8080/actuator
+      NGINX_PROJECT_TEMPLATE_SERVER_BASE_URL: http://server:8082/api
+      NGINX_PROJECT_TEMPLATE_SERVER_ACTUATOR_URL: http://server:8082/actuator
     ports:
-      - 8081:8081
+      - ${PORT_BIND_ADDRESS:-127.0.0.1}:8081:8081
     depends_on:
       - "server"
     networks:
@@ -49,7 +49,7 @@ services:
     container_name: ${PROJECT_NAME}_server
     environment:
       SPRING_PROFILES_ACTIVE: dev-env,dataservices-external_postgres
-      SERVER_PORT: 8080
+      SERVER_PORT: 8082
       SERVER_ADDRESS: 0.0.0.0
 
       SPRING_DATASOURCES_DATASERVICES_URL: jdbc:postgresql://postgres:5432/${DATASERVICES_DB}
@@ -80,7 +80,7 @@ services:
     networks:
       - a12_compose
     ports:
-      - 8082:8080
+      - ${PORT_BIND_ADDRESS:-127.0.0.1}:8082:8082
     volumes:
       - ../import:/var/lib/a12/data/import
       - ../build/wcf-output/data/models:/var/lib/a12/data/models
@@ -89,7 +89,7 @@ services:
     image: ${DOCKER_REGISTRY_FOR_READ}/postgres:${POSTGRES_VERSION}
     container_name: ${PROJECT_NAME}_postgres
     ports:
-      - 8083:5432
+      - ${PORT_BIND_ADDRESS:-127.0.0.1}:8083:5432
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       KEYCLOAK_DATABASE_USER: ${KEYCLOAK_DATABASE_USER}
@@ -155,7 +155,7 @@ services:
       KC_DB_USERNAME: ${KEYCLOAK_DATABASE_USER}
       KC_DB_PASSWORD: ${KEYCLOAK_DATABASE_PASSWORD}
     ports:
-      - 8089:8080
+      - ${PORT_BIND_ADDRESS:-127.0.0.1}:8089:8080
     volumes:
       - ./keycloak:/opt/keycloak/data/import
     command: [ "start-dev" , "--import-realm" ]

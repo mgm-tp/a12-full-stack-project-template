@@ -2,7 +2,7 @@
   "header": {
     "id": "Person_Dc",
     "modelType": "document",
-    "modelVersion": "29.4.0",
+    "modelVersion": "29.8.0",
     "locales": [
       {
         "code": "en"
@@ -430,6 +430,27 @@
                                 {
                                   "locale": "de",
                                   "text": "Internal Error: If the content is filled, the size must be also filled."
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "Rule",
+                            "id": "rule_7c1e4",
+                            "name": "PhotoMimeTypeAllowed",
+                            "Rule": {
+                              "errorEntityRelPath": "../mime_type",
+                              "errorCode": "Errorrule_7c1e4",
+                              "errorCondition": "FieldValueNotIncludedInValueList(mime_type, \"image/png\", \"image/jpeg\")",
+                              "severity": "ERROR",
+                              "errorMessage": [
+                                {
+                                  "locale": "en",
+                                  "text": "Only PNG or JPEG images are allowed."
+                                },
+                                {
+                                  "locale": "de",
+                                  "text": "Es sind nur PNG- oder JPEG-Bilder erlaubt."
                                 }
                               ]
                             }

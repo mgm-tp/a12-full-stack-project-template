@@ -1,6 +1,29 @@
 # Changelog
 
-## [202606.0.0] 
+## [202606.2.0]
+### Changed
+- Updated to A12 2026.06-ext2
+- Updated to Spring Boot 4.1.1
+- Integrated the A12 Print Engine
+- Now require Gradle 9.1.0 or later for Java 25 compatibility
+- Added the Keycloak login credentials to the README
+
+### Fixed
+- Dev services (frontend dev server, Docker Compose ports) now listen only on localhost by default
+- Fixed `pushImages` using the registry read credentials instead of the publish credentials when `dockerUseCredentials` is enabled
+
+## [202606.1.1] - 2026-09-28
+### Fixed
+- Reverted to the legacy Relationship UI Engine
+
+## [202606.1.0] - 2026-08-26
+### Changed
+- Updated to A12 2026.06-ext1
+- Replaced Hazelcast with Infinispan
+- Aligned the models to the new A12 model naming convention and stabilized the typed accessor generation
+- Integrated the third-party notices Gradle plugin
+
+## [202606.0.0] - 2026-07-10
 ### Changed
 - Updated to A12 2026.06
 - Updated to Spring Boot 4.0.6

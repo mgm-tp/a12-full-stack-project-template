@@ -9,7 +9,7 @@
     "gradle": {
       "name": "Gradle",
       "superscript": "1",
-      "version": ">=9.0.x",
+      "version": ">=9.1.0",
       "note": ""
     },
     "node": {

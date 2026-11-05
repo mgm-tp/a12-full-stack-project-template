@@ -41,7 +41,7 @@ include 'import'
 include 'e2e'
 
 dependencyResolutionManagement {
-    def springBootVersion = '4.0.6'
+    def springBootVersion = '4.1.1'
     versionCatalogs {
         gradlePluginLibs {
             version('spring-boot', springBootVersion)
@@ -63,12 +63,13 @@ dependencyResolutionManagement {
         }
 
         a12Libs {
-            version('base', '30.0.2')
-            version('kernel', '31.1.1')
-            version('uaa', '10.0.1')
-            version('dataservices', '39.0.3')
-            version('wcf', '1.1.3')
-            version('rmc-conversion', '0.5.1')
+            version('base', '30.1.1')
+            version('kernel', '31.3.1')
+            version('uaa', '10.1.1')
+            version('dataservices', '39.1.1')
+            version('print', '4.1.1')
+            version('wcf', '1.2.1')
+            version('rmc-conversion', '1.0.1')
 
             library('uaa-authorization-a12-extension', 'com.mgmtp.a12.uaa', 'uaa-authorization-a12-extension').versionRef('uaa')
             library('uaa-authorization-introspector', 'com.mgmtp.a12.uaa', 'uaa-authorization-introspector').versionRef('uaa')
@@ -82,6 +83,8 @@ dependencyResolutionManagement {
             library('kernel-bom', 'com.mgmtp.a12.kernel', 'kernel-bom').versionRef('kernel')
             library('uaa-bom', 'com.mgmtp.a12.uaa', 'uaa-bom').versionRef('uaa')
             library('dataservices-bom', 'com.mgmtp.a12.dataservices', 'dataservices-parent').versionRef('dataservices')
+
+            library('print', 'com.mgmtp.a12.print', 'print-integration').versionRef('print')
         }
 
         libs {

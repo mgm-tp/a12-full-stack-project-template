@@ -48,10 +48,10 @@ type A12ApplicationConfigWithKeycloak = A12ApplicationConfig & { keycloak?: unkn
 type ApplicationWithKeycloakConfig = RequireFeatures<A12ApplicationConfigWithKeycloak, { uaa: true; keycloak?: never }>;
 
 export const addKeycloakMiddlewares = <T extends ApplicationWithKeycloakConfig>(cfg: T) =>
-    addAdditionalMiddlewares<T>(setLocaleKeycloakOnLoginMiddleware)(cfg);
+    addAdditionalMiddlewares(setLocaleKeycloakOnLoginMiddleware)(cfg);
 
 export const addKeycloakSagas = <T extends ApplicationWithKeycloakConfig>(cfg: T) =>
-    addCustomSagas<T>(setRolesForUserAfterTokenRefresh)(cfg);
+    addCustomSagas(setRolesForUserAfterTokenRefresh)(cfg);
 
 export const withKeycloak = <T extends ApplicationWithKeycloakConfig>(cfg: T) =>
     setConfigured<T, "keycloak">("keycloak")(

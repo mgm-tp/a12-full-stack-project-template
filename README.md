@@ -30,7 +30,7 @@ To wrap up, the following [tools](./tool-versions.json) are required to build th
 | Tool                 | Version     | Note |
 |----------------------|-------------|------|
 | [JDK]                | '>=21 <=25' |      |
-| [Gradle]<sup>1</sup> | '>=9.0.x'   |      |
+| [Gradle]<sup>1</sup> | '>=9.1.0'   |      |
 | [Node]               | '24.x.x'    |      |
 | [npm]<sup>1</sup>    | '>=11.x.x'  |      |
 | [Docker]<sup>1</sup> | '>=20.x'    |      |
@@ -83,7 +83,7 @@ By default, template services are exposed on the following ports:
 
 Once all services are running, you can access the frontend at [http://localhost:8081](http://localhost:8081).
 
-There are three test users with credentials:
+There are three test users with credentials for the Project Template application:
 
 - `admin` / `A12PT-admintest` for Admin role
 - `user1` / `A12PT-user1test` for User role
@@ -91,6 +91,10 @@ There are three test users with credentials:
 
 Log in with one of these credentials and take a look over the content.
 > **WARNING**: Project Template's login setup is for development purposes only. It is necessary to significantly enhance the security of logins and user management for production environments.
+
+There is one admin user for managing the Keycloak instance:
+
+- `admin` / `admin` for accessing the Keycloak admin console under `localhost:8089`
 
 ---
 

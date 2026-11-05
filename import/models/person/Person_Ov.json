@@ -2,7 +2,7 @@
   "header": {
     "id": "Person_Ov",
     "modelType": "overview",
-    "modelVersion": "39.0.0",
+    "modelVersion": "39.1.0",
     "locales": [
       {
         "code": "en"
@@ -37,6 +37,17 @@
     ]
   },
   "content": {
+    "configuration": {
+      "enableFilter": true,
+      "filterConfiguration": {
+        "showFilterButton": true,
+        "showFilterBar": true,
+        "filterMode": "all"
+      },
+      "showFullTextSearch": true,
+      "pagingSize": 10,
+      "rowHeight": 49
+    },
     "columns": [
       {
         "id": "column-c3b30",
@@ -84,6 +95,32 @@
     ],
     "rowActionGroup": {
       "actions": [
+        {
+          "icon": {
+            "name": "print",
+            "theme": "filled"
+          },
+          "label": [
+            {
+              "locale": "en",
+              "text": "Print"
+            },
+            {
+              "locale": "de",
+              "text": "Drucken"
+            }
+          ],
+          "event": "event_print",
+          "labelHidden": true,
+          "destructive": false,
+          "annotations": [
+            {
+              "name": "print_model",
+              "value": "Person_Pt"
+            }
+          ],
+          "primary": false
+        },
         {
           "event": "delete",
           "confirmation": {
@@ -150,17 +187,6 @@
     "footerBox": {
       "leftSlot": [],
       "rightSlot": []
-    },
-    "configuration": {
-      "enableFilter": true,
-      "showFullTextSearch": true,
-      "pagingSize": 10,
-      "filterConfiguration": {
-        "showFilterButton": true,
-        "showFilterBar": true,
-        "filterMode": "all"
-      },
-      "rowHeight": 49
     }
   }
 }

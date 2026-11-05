@@ -39,10 +39,6 @@ plugins {
     alias(gradlePluginLibs.plugins.node.gradle)
 }
 
-//npmInstall.configure {
-//    args = ['--legacy-peer-deps']
-//}
-
 
 ext {
     imageLabels = ["name"       : "${calculateShortTag(clientName)}".toString(),
@@ -161,6 +157,10 @@ tasks.register('pushImages', DockerPushImage) {
     dependsOn buildImages
 
     images.add(calculateFullTag(clientName))
+    if (dockerUseCredentials.toBoolean()) {
+        // The shared 'docker' extension ends up with the read registry credentials, so bind the publish ones here
+        registryCredentials registryCredentialsForPublishVar
+    }
 }
 
 tasks.register('removeTagFull', DockerRemoveImage) {
@@ -180,6 +180,8 @@ tasks.register("cyclonedxBomNpm", NpxTask) {
     command = "@cyclonedx/cyclonedx-npm"
     // --package-lock-only builds the SBOM from package-lock.json instead of the installed node_modules tree.
     args = ["--ignore-npm-errors", "--package-lock-only", "--output-file", layout.buildDirectory.file("reports/cyclonedx.json").get().asFile.absolutePath]
+    // Only resolve packages that are at least 7 days old.
+    environment.put('npm_config_min_release_age', '7')
 }
 
 // the report cyclonedxBom will be correctly replaced by cyclonedxBomNpm result
